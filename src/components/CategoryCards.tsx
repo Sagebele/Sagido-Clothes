@@ -1,13 +1,9 @@
-import React from "react";
 import womanImg from "../assets/images/womanCardImage.jpg"
 import manImg from "../assets/images/manCardImage.jpg"
 import juniorImg from "../assets/images/juniorCardImage.jpg"
 
-{/* <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div> */}
-
 const CategoryCard = () => {
     return (
-
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((card) => (
               <div
@@ -25,43 +21,46 @@ const CategoryCard = () => {
 
                 <div className="p-5 flex items-center justify-center gap-4">
 
-                  <button className="rounded-xl px-4 py-2 text-sm font-semibold border hover:bg-black hover:text-white transition">
+                    <button 
+                    className="rounded-xl px-4 py-2 text-sm font-semibold border bg-black 
+                    hover:bg-black hover:text-white hover:scale-105 transition"
+                    >
                     {card.buttonText}
                   </button>
                 </div>
               </div>
             ))}
-          </div>
-      );
-    };
+        </div>
+    );
+};
     
-    interface CardItemProp {
-        id: string;
-        title: string;
-        imageUrl: string;
-        buttonText: string;
-      };
+interface CardItemProp {
+    id: string;
+    title: string;
+    imageUrl: string;
+    buttonText: string;
+    };
       
-    const cards: CardItemProp[] = [
-        {
-            id: "womenCard",
-            title: "Women",
-            imageUrl: womanImg,
-            buttonText: "Shop Women",
-        },
-        {
-            id: "menCard",
-            title: "Men",
-            imageUrl: manImg,
-            buttonText: "Shop Men",
-        },
-        {
-            id: "juniorCard",
-            title: "Junior",
-            imageUrl: juniorImg,
-            buttonText: "Shop Junior",
-        },
-      ];
+const cards: CardItemProp[] = [
+    {
+        id: "womenCard",
+        title: "Women",
+        imageUrl: womanImg,
+        buttonText: "Shop Women",
+    },
+    {
+        id: "menCard",
+        title: "Men",
+        imageUrl: manImg,
+        buttonText: "Shop Men",
+    },
+    {
+        id: "juniorCard",
+        title: "Junior",
+        imageUrl: juniorImg,
+        buttonText: "Shop Junior",
+    },
+    ];
 
 
     export default CategoryCard;
