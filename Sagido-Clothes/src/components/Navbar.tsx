@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSearch, faHeart, faShoppingBasket, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faHeart, faShoppingBasket, faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import "../styles/Header.css";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHamOpen, setIsHamOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,12 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleHam = () => {
+    setIsHamOpen(!isHamOpen);
+  }
+
+    
 
   return (
     <nav className={`sticky top-0 left-0 right-0 z-50  px-3 py-4 transition-all duration-300 ${
@@ -43,11 +50,22 @@ const Navbar = () => {
           <a href="#" className="text-zinc-900 nav-a"><FontAwesomeIcon icon={faSearch} /></a>
           <a href="#" className="text-zinc-900 nav-a"><FontAwesomeIcon icon={faShoppingBasket} /></a>
           <button
-            className="text-white p-2 rounded-lg hover:bg-white/10"
+            className="text-zinc-900 p-2 rounded-lg hover:bg-white/10"
             aria-label="Open menu"
+            onClick={handleHam}
           >
-            <FontAwesomeIcon icon={faBars} />
+            {isHamOpen ? (<FontAwesomeIcon icon={faX} />) : <FontAwesomeIcon icon={faBars} />}
           </button>
+          <div className={`absolute text-center top-16 right-4 bg-white/90 backdrop-blur-md rounded-lg shadow-lg py-4 w-48 
+            transition-transform duration-300 ${isHamOpen ? 'transform translate-y-0 opacity-100' : 'transform -translate-y-10 opacity-0 pointer-events-none'}`
+            }>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a">Explore</a>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a">Women</a>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a">Men</a>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a">Junior</a>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a">USA $</a>
+            <a href="#" className="block px-4 py-2 text-zinc-900 nav-a"><FontAwesomeIcon icon={faUser} />   </a>
+          </div>
 
         </div>
         
