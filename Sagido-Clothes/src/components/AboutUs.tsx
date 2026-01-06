@@ -19,9 +19,6 @@ const AboutUs = () => {
                     </p>
                     <span className="learn-more">Learn More</span>
 
-                    {/* <span className="border-2 border-transparent border-b-zinc-900">
-
-                    </span> */}
                 </div>
                 <div className="w-full lg:w-1/2">
                     <img

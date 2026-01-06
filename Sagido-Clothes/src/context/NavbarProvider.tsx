@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { type NavbarConfig, NavbarContext, type NavbarContextValue } from "./NavbarContext";
+import React, { useCallback, useMemo, useState } from "react";
+import { type NavbarConfig, NavbarContext    } from "./NavbarContext";
 
 const DEFAULT_NAVBAR: NavbarConfig = {
     variant: "solid",
@@ -7,22 +7,24 @@ const DEFAULT_NAVBAR: NavbarConfig = {
 };
 
 export const NavbarProvider = ({ children }: { children: React.ReactNode }) => {
-    const [config, setConfig] = useState<NavbarConfig>(DEFAULT_NAVBAR);
+    const [config, setConfig] = useState(DEFAULT_NAVBAR);
 
-    const setNavbar = (partial: Partial<NavbarConfig>) => {
-        setConfig((prev) => ({ ...prev, ...partial }));
-    };
+    const setNavbar = useCallback((partial: Partial<NavbarConfig>) => {
+        setConfig((prev) => {
+            const next = { ...prev, ...partial };
+            return (next.variant === prev.variant && next.tone === prev.tone) ? prev : next;
+        });
+    }, []);
 
-    const resetNavbar = () => setConfig(DEFAULT_NAVBAR);
+    const resetNavbar = useCallback(() => {
+        setConfig(DEFAULT_NAVBAR);
+    }, []);
 
-    const value: NavbarContextValue = useMemo(
+    const value = useMemo(
         () => ({ config, setNavbar, resetNavbar }),
-        [config]
+        [config, setNavbar, resetNavbar]
     );
 
-    return (
-        <NavbarContext.Provider value={value}>
-            {children}
-        </NavbarContext.Provider>
-    );
+    return <NavbarContext.Provider value={value}>{children}</NavbarContext.Provider>;
 };
+
