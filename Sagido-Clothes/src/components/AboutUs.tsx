@@ -1,10 +1,9 @@
-import React from "react";
 import aboutUsImg from "../assets/images/aboutUs.jpg";
 import "../styles/AboutUs.css";
 
 const AboutUs = () => {
     return (
-        <div className="max-w-7xl mx-auto mt-15 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto mt-15 px-6 md:px-10 bg-inherit mb-20">
             <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8">
 
                 <div className="w-full lg:w-1/2 flex flex-col justify-center text-center">
