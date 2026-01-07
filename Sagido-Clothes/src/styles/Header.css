@@ -4,7 +4,14 @@
 
 @layer components {
     .nav-a {
-    @apply relative inline-block; 
+        padding-bottom: 0px;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 500;
+        width: fit-content ;
+        text-align: center;
+        position: relative;
+        justify-content: center;
     }
 
 .nav-a::before {

@@ -1,7 +1,8 @@
 import React from "react";
-import backgroundImage from "../assets/images/pexels-kseniachernaya-3965548.jpg";
+import backgroundImage from "../../assets/images/pexels-kseniachernaya-3965548.jpg";
 
 const BackgroundLayout = ({ children }: { children: React.ReactNode }) => {
+
   return (
     <div
       className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"

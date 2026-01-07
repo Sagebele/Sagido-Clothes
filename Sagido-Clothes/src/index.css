@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "./styles/Header.css";
 
+@layer utilities {
+  .font-delius {
+    font-family: "Delius", cursive;
+  }
+}
+
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

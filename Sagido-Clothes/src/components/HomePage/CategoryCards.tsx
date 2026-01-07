@@ -1,10 +1,13 @@
-import womanImg from "../assets/images/womanCardImage.jpg"
-import manImg from "../assets/images/manCardImage.jpg"
-import juniorImg from "../assets/images/juniorCardImage.jpg"
+import womanImg from "../../assets/images/womanCardImage.jpg"
+import manImg from "../../assets/images/manCardImage.jpg"
+import juniorImg from "../../assets/images/juniorCardImage.jpg"
+
+
 
 const CategoryCard = () => {
+
     return (
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-14 bg-inherit">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-14  ">
         <h3 className="text-zinc-900 text-2xl font-bold mb-8 text-center">
           Explore Collections for All Ages and Styles
         </h3>

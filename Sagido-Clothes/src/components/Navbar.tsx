@@ -12,7 +12,7 @@ import {
 import { useNavbar } from "../context/useNavbar";
 
 const Navbar = () => {
-  const { config } = useNavbar();
+  const { config, setNavbar } = useNavbar();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHamOpen, setIsHamOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
 
   const handleSearchClick = () => {
     setIsSearchOpen((prev) => !prev);
-    
+    setNavbar({ variant: isSearchOpen ? "transparent" : "solid" });
   }
 
   const shouldBeTransparent = config.variant === "transparent" && !isScrolled;
@@ -44,9 +44,11 @@ const Navbar = () => {
   const textTone =
     config.tone === "light" ? "text-zinc-900" : "text-stone-200";
 
+  const textFont = "font-delius";
+
   return (
-    <nav className={`${navBase} ${navBg} ${textTone}`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
+      <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         {/* Left links (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="flex items-center gap-2 nav-a">Explore</Link>
@@ -65,8 +67,8 @@ const Navbar = () => {
         </button>
 
         {/* Logo */}
-        <div className="text-2xl font-bold">
-          <Link to="/" className="flex items-center gap-2 ">Sagido</Link>
+        <div className="text-2xl font-bold absolute left-1/2 transform -translate-x-1/2 z-10">
+          <Link to="/" className="flex items-center ">Sagido</Link>
         </div>
 
         {/* Right icons (desktop) */}
@@ -91,7 +93,7 @@ const Navbar = () => {
       </div>
 
       {isSearchOpen && (
-        <div className="hidden md:block border-t border-white/10 px-3 py-3">
+        <div className="hidden md:block border-t border-white/10 px-3 py-4 mt-4">
           <div className="max-w-7xl mx-auto">
             <form
               onSubmit={(e) => {
@@ -104,6 +106,9 @@ const Navbar = () => {
               }}
             >
               <input
+                type="text"
+                id="desktop-search"
+                name="desktop-search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for products..."
@@ -147,6 +152,8 @@ const Navbar = () => {
             <div className="mt-2">
               <input
                 type="text"
+                id="mobile-search"
+                name="mobile-search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => {
