@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -11,6 +11,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavbar } from "../context/useNavbar";
 
+type Currency = "eur" | "usd";
+
+const CURRENCY_LABEL: Record<Currency, string> = {
+  eur: "EUR €",
+  usd: "USD $",
+};
+
 const Navbar = () => {
   const { config, setNavbar } = useNavbar();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,10 +25,16 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
-  const [currency, setCurrency] = useState("EUR €");
-  const currencyDropdownRef = useRef<HTMLDivElement>(null);
+const navigate = useNavigate();
+const location = useLocation();
+const { currency: currencyParam } = useParams<{ currency?: string }>();
 
-  const navigate = useNavigate();
+const currency: Currency = currencyParam === "usd" ? "usd" : "eur";
+const currencyLabel = CURRENCY_LABEL[currency];
+
+  const currencyDropdownRef = useRef<HTMLDivElement>(null);
+  const closeTimeout = useRef<number | null>(null);
+
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 0);
@@ -30,35 +43,42 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      const target = event.target as HTMLElement;
-      if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(target)) {
-        setIsCurrencyOpen(false);
-      }
-    };
-
-    if (isCurrencyOpen) {
-      document.addEventListener("click", handleClickOutside, { passive: true });
-      document.addEventListener("touchstart", handleClickOutside, { passive: true });
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-        document.removeEventListener("touchstart", handleClickOutside);
-      };
-    }
-  }, [isCurrencyOpen]);
-
 
   const handleSearchClick = () => {
-    setIsSearchOpen((prev) => !prev);
-    setNavbar({ variant: isSearchOpen ? "transparent" : "solid" });
+    const next = !isSearchOpen;
+    setIsSearchOpen(next);
+    setNavbar({ variant: next ? "transparent" : "solid" });
   }
 
-  const handleCurrency = (currency: string) => {
-    setIsCurrencyOpen((v) => !v);
-    setCurrency(currency);
-  };
+  const handleCurrency = (to: Currency) => {
+    setIsCurrencyOpen(false);
 
+    const path = location.pathname;
+    const segments = path.split("/").filter(Boolean);
+
+    if (segments[0] === "eur" || segments[0] === "usd") {
+      segments[0] = to;
+    } else {
+      segments.unshift(to);
+    }
+
+    const nextPath = "/" + segments.join("/") + location.search;
+    navigate(nextPath, { replace: true });
+};
+
+
+  const openCurrencyDropdown = () => {
+    if (closeTimeout.current) {
+      window.clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+    setIsCurrencyOpen(true);
+  };
+  const closeCurrencyDropdown = () => {
+    closeTimeout.current = window.setTimeout(() => {
+      setIsCurrencyOpen(false);
+    }, 200);
+  };
   const shouldBeTransparent = config.variant === "transparent" && !isScrolled;
 
   const navBase =
@@ -77,10 +97,10 @@ const Navbar = () => {
     <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="flex items-center gap-2 nav-a">Explore</Link>
-          <Link to="/women" className="flex items-center gap-2 nav-a ">Women</Link>
-          <Link to="/men" className="flex items-center gap-2 nav-a ">Men</Link>
-          <Link to="/junior" className="flex items-center gap-2 nav-a ">Junior</Link>
+          <Link to={`/${currency}/explore`} className="flex items-center gap-2 nav-a">Explore</Link>
+          <Link to={`/${currency}/women`} className="flex items-center gap-2 nav-a ">Women</Link>
+          <Link to={`/${currency}/men`} className="flex items-center gap-2 nav-a ">Men</Link>
+          <Link to={`/${currency}/junior`} className="flex items-center gap-2 nav-a ">Junior</Link>
         </div>
 
         <button
@@ -92,11 +112,39 @@ const Navbar = () => {
         </button>
 
         <div className="text-2xl font-bold absolute left-1/2 transform -translate-x-1/2 z-10">
-          <Link to="/" className="flex items-center ">Sagido</Link>
+          <Link to={`/${currency}`} className="flex items-center">Sagido</Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#" className="flex items-center gap-2 nav-a ">USA $</a>
+          <div
+            className="group relative"
+            onMouseEnter={openCurrencyDropdown}
+            onMouseLeave={closeCurrencyDropdown}
+          >
+            <span className="flex items-center gap-2 nav-a p-1 cursor-pointer">
+              {currencyLabel}
+            </span>
+
+            {isCurrencyOpen && (
+              <div
+                ref={currencyDropdownRef}
+                className={`absolute right-0 mt-3 w-fit ${navBg} backdrop-blur-md rounded-md shadow-lg z-20`}
+              >
+                <button
+                  className="w-full px-4 py-2 text-center hover:bg-white/10 rounded-t-md"
+                  onClick={() => handleCurrency("usd")}
+                >
+                  USD $
+                </button>
+                <button
+                  className="w-full px-4 py-2 text-center hover:bg-white/10 rounded-b-md"
+                  onClick={() => handleCurrency("eur")}
+                >
+                  EUR €
+                </button>
+              </div>
+            )}
+          </div>
 
           <div className="relative flex items-center">
             <button
@@ -109,9 +157,9 @@ const Navbar = () => {
             </button>
           </div>
 
-          <a href="#" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faUser} /></a>
-          <a href="#" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faHeart} /></a>
-          <a href="#" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faShoppingBasket} /></a>
+          <Link to="/account" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faUser} /></Link>
+          <Link to="/favorites" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faHeart} /></Link>
+          <Link to="/cart" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faShoppingBasket} /></Link>
         </div>
       </div>
 
@@ -158,7 +206,7 @@ const Navbar = () => {
               onClick={() => {setIsCurrencyOpen((v) => !v);}}
               className={`${isCurrencyOpen ? "hidden" : "block"} cursor-pointer`}
             >
-              {currency}
+              {currencyLabel}
             </span>
             <div 
               ref={currencyDropdownRef}
@@ -166,13 +214,13 @@ const Navbar = () => {
             >
               <button
               className="px-4 py-2 text-left hover:bg-white/10 rounded"
-              onClick={() => handleCurrency("USD $")}
+              onClick={() => handleCurrency("usd")}
             >
               USD $
             </button>
             <button
               className="px-4 py-2 text-left hover:bg-white/10 rounded"
-              onClick={() => handleCurrency("EUR €")}
+              onClick={() => handleCurrency("eur")}
             >
               EUR €
             </button>
@@ -222,3 +270,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
