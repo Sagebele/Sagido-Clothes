@@ -15,9 +15,9 @@ This project showcases a complete e-commerce frontend with responsive design, dy
   - Desktop search bar with form submission
   - Mobile search functionality
   - User, favorites, and shopping cart icons
-  - Currency selector (USA $)
+  - Currency selector (EUR/USD)
 - **Responsive Design** that adapts to all screen sizes
-- **Theme Support** with light/dark mode capability
+- **Theme Support** with light/dark mode capability(probably will be removed)
 
 ### 🏠 Homepage Sections
 - **Hero Section** with background image overlay and seasonal messaging ("Happy Holidays from Sagido")
@@ -132,6 +132,9 @@ src/
 │   └── WomenPage.tsx
 ├── assets/
 │   └── images/
+│   │   ├── HomePage/
+│   │   | ├──Carousel
+│   │   ├── Men
 ├── styles/
 └── main.tsx
 ```
