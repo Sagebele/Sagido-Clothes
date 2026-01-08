@@ -6,6 +6,16 @@ This project showcases a complete e-commerce frontend with responsive design, dy
 
 ---
 
+
+
+[▶ Preview video]
+
+https://github.com/user-attachments/assets/533eb793-cab0-4948-89fa-84b2c27f1713
+
+
+
+
+
 ## ✨ Current Features
 
 ### 🧭 Navigation & Layout
