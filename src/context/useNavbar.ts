@@ -13,6 +13,16 @@ export const setNavbarConfig = (config: { variant: "transparent" | "solid"; tone
     return config;
 }
 
+export const getNavbarBg = (variant: "transparent" | "solid", isScrolled: boolean) => {
+    const shouldBeTransparent = variant === "transparent" && !isScrolled;
+
+    return shouldBeTransparent
+        ? "bg-transparent border-b border-transparent"
+        : "bg-black/20 backdrop-blur-md border-b border-white/10";
+};
+
+
+
 export const setNavbarBg= (variant: "transparent" | "solid") => {
     if (variant === "transparent") {
         return "bg-transparent border-b border-transparent";
