@@ -63,6 +63,9 @@ const FooterHome = () => {
                             >
                                 <input
                                     type="email"
+                                    id="newsletter-email"
+                                    name="email"
+                                    autoComplete="email"
                                     placeholder="Enter your email"
                                     className="px-3 py-2 rounded-md border text-zinc-900 border-gray-300 focus:outline-none focus:ring-2 focus:ring-zinc-900 text-sm"
                                 />

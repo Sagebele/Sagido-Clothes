@@ -17,7 +17,7 @@ const HomePage = () => {
         return () => resetNavbar();
     }, [setNavbar, resetNavbar]);
 
-    const mainBg = theme === "light" ? "bg-white" : "bg-zinc-900";
+    const mainBg = theme === "light" ? "bg-white" : "bg-white/90";
 
     return (
     <div className={mainBg}>
@@ -32,13 +32,16 @@ const HomePage = () => {
             </main>
         </BackgroundLayout>
 
-        <section className={`relative z-10 py-16 `}>
+        <section className={`relative z-10 py-32 w-full space-y-20`}>
             <CategoryCard />
             <AboutUs />
+            <PictureCarousel />
+            <Information/>
         </section>
-        <Information />
-        <PictureCarousel />
-        <FooterHome />
+        <section className="relative z-10 pt-10 w-full ">
+            <FooterHome/>
+        </section>
+
 
     </div>
     );

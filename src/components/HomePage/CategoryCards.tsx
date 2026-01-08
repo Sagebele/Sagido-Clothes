@@ -1,6 +1,6 @@
-import womanImg from "../../assets/images/womanCardImage.jpg"
-import manImg from "../../assets/images/manCardImage.jpg"
-import juniorImg from "../../assets/images/juniorCardImage.jpg"
+import womanImg from "../../assets/images/HomePage/womanCardImage.jpg"
+import manImg from "../../assets/images/HomePage/manCardImage.jpg"
+import juniorImg from "../../assets/images/HomePage/juniorCardImage.jpg"
 
 
 

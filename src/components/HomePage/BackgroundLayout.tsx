@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../../assets/images/pexels-kseniachernaya-3965548.jpg";
+import backgroundImage from "../../assets/images/HomePage/backgroundImage.jpg";
 
 const BackgroundLayout = ({ children }: { children: React.ReactNode }) => {
 
