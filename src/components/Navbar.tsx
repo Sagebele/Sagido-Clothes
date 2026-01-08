@@ -50,6 +50,12 @@ const Navbar = () => {
     }
   };
 
+  const closeAllDropdowns = () => {
+    womenDD.closeNow();
+    menDD.closeNow();
+    juniorDD.closeNow();
+  };
+
 
 
   useEffect(() => {
@@ -84,9 +90,11 @@ const Navbar = () => {
 
 
 
-const womenDD = useHoverDropdown({ closeDelay: 150, onOpen: navbarHoldSolid, onClose: navbarRelease });
-const searchDD = useHoverDropdown({ closeDelay: 150, onOpen: navbarHoldSolid, onClose: navbarRelease });
-const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, onClose: navbarRelease });
+const womenDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, onClose: navbarRelease });
+const menDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, onClose: navbarRelease });
+const juniorDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, onClose: navbarRelease });
+const searchDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, onClose: navbarRelease });
+const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, onClose: navbarRelease });
 
 
 
@@ -110,15 +118,40 @@ const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, 
           </Link>
           <div
             className="relative"
-            onMouseEnter={womenDD.openNow}
+            onMouseEnter={() => {
+              closeAllDropdowns();
+              womenDD.openNow();
+            }}
             onMouseLeave={womenDD.closeLater}
           >
             <Link to={`/${currency}/women`} className="flex items-center gap-2 nav-a">
               Women
             </Link>
           </div>
-          <Link to={`/${currency}/men`} className="flex items-center gap-2 nav-a ">Men</Link>
-          <Link to={`/${currency}/junior`} className="flex items-center gap-2 nav-a ">Junior</Link>
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              closeAllDropdowns();
+              menDD.openNow();
+            }}
+            onMouseLeave={menDD.closeLater}
+          >
+            <Link to={`/${currency}/men`} className="flex items-center gap-2 nav-a">
+              Men
+            </Link>
+          </div>
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              closeAllDropdowns();
+              juniorDD.openNow();
+            }}
+            onMouseLeave={juniorDD.closeLater}
+          >
+            <Link to={`/${currency}/junior`} className="flex items-center gap-2 nav-a">
+              Junior
+            </Link>
+          </div>
         </div>
 
         <button
@@ -171,38 +204,164 @@ const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, 
             </button>
           </div>
 
-          <Link to="/account" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faUser} /></Link>
-          <Link to="/favorites" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faHeart} /></Link>
-          <Link to="/cart" className="flex items-center gap-2 nav-a "><FontAwesomeIcon icon={faShoppingBasket} /></Link>
+          <Link to="/account" 
+          className="flex items-center gap-2 nav-a ">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+          <Link to="/favorites" 
+          className="flex items-center gap-2 nav-a ">
+            <FontAwesomeIcon icon={faHeart} />
+          </Link>
+          <Link to="/cart" 
+          className="flex items-center gap-2 nav-a ">
+            <FontAwesomeIcon icon={faShoppingBasket} />
+          </Link>
         </div>
       </div>
-      
+      {/* Dropdowns */}
+      {juniorDD.open && (
+        <div
+          className={`hidden md:block border-t border-white/10 px-3 py-4 my-4 rounded-md z-20`}
+          onMouseEnter={juniorDD.openNow}
+          onMouseLeave={juniorDD.closeLater}
+        >
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+            <div className="flex items-center justify-center">
+              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+                Junior
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <Link to={`/${currency}/junior/new`}
+              className="hover:text-stone-200">
+                New arrivals
+              </Link>
+              <Link to={`/${currency}/junior/shoes`}
+              className="hover:text-stone-200">
+                Shoes
+              </Link>
+              <Link to={`/${currency}/junior/clothing`}
+              className="hover:text-stone-200">
+                Clothing
+              </Link>
+              <Link to={`/${currency}/junior/accessories`}
+              className="hover:text-stone-200">
+                Accessories
+              </Link>
+              <Link to={`/${currency}/junior/sportswear`}
+              className="hover:text-stone-200">
+                Sportswear
+              </Link>
+              <Link to={`/${currency}/junior/sale`}
+              className="hover:text-stone-200">
+                Sale
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+      {menDD.open && (
+        <div
+          className={`hidden md:block border-t border-white/10 px-3 py-4 my-4 rounded-md z-20`}
+          onMouseEnter={menDD.openNow}
+          onMouseLeave={menDD.closeLater}
+        >
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+            <div className="flex items-center justify-center">
+              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+                Men
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <Link to={`/${currency}/men/new`}
+              className="hover:text-white">
+                New arrivals
+              </Link>
+              <Link to={`/${currency}/men/shoes`}
+              className="hover:text-white">
+                Shoes
+              </Link>
+              <Link to={`/${currency}/men/clothing`}
+              className="hover:text-white">
+                Clothing
+              </Link>
+              <Link to={`/${currency}/men/jackets`}
+              className="hover:text-white">
+                Jackets & Coats
+              </Link>
+              <Link to={`/${currency}/men/jeans`}
+              className="hover:text-white">
+                Jeans & Pants
+              </Link>
+              <Link to={`/${currency}/men/accessories`}
+              className="hover:text-white">
+                Accessories
+              </Link>
+              <Link to={`/${currency}/men/sportswear`}
+              className="hover:text-white">
+                Sportswear
+              </Link>
+              <Link to={`/${currency}/men/sale`}
+              className="hover:text-white">
+                Sale
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       {womenDD.open && (
-              <div
-                className={`hidden md:block border-t border-white/10 px-3 py-4 my-4 backdrop-blur-md rounded-md shadow-lg z-20`}
-                onMouseEnter={womenDD.openNow}
-                onMouseLeave={womenDD.closeLater}
-              >
-                <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
-                  <div className="flex items-center justify-center">
-                    <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold ">
-                      Women
-                    </p>
-                  </div>
-                  <div className="grid gap-2">
-                    <Link to={`/${currency}/women/new`} className="hover:text-white">
-                      New arrivals
-                    </Link>
-                    <Link to={`/${currency}/women/shoes`} className="hover:text-white">
-                      Shoes
-                    </Link>
-                    <Link to={`/${currency}/women/clothing`} className="hover:text-white">
-                      Clothing
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
+        <div
+          className={`hidden md:block border-t border-white/10 px-3 py-4 my-4 rounded-md z-20`}
+          onMouseEnter={womenDD.openNow}
+          onMouseLeave={womenDD.closeLater}
+        >
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+            <div className="flex items-center justify-center">
+              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+                Women
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <Link to={`/${currency}/women/new`}
+              className="hover:text-white">
+                New arrivals
+              </Link>
+              <Link to={`/${currency}/women/shoes`}
+              className="hover:text-white">
+                Shoes
+              </Link>
+              <Link to={`/${currency}/women/clothing`}
+              className="hover:text-white">
+                Clothing
+              </Link>
+              <Link to={`/${currency}/women/dresses`}
+              className="hover:text-white">
+                Dresses
+              </Link>
+              <Link to={`/${currency}/women/jackets`}
+              className="hover:text-white">
+                Jackets & Coats
+              </Link>
+              <Link to={`/${currency}/women/jeans`}
+              className="hover:text-white">
+                Jeans & Pants
+              </Link>
+              <Link to={`/${currency}/women/accessories`}
+              className="hover:text-white">
+                Accessories
+              </Link>
+              <Link to={`/${currency}/women/sportswear`}
+              className="hover:text-white">
+                Sportswear
+              </Link>
+              <Link to={`/${currency}/women/sale`}
+              className="hover:text-white">
+                Sale
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       {searchDD.open && (
         <div
           onMouseEnter={searchDD.openNow}
@@ -238,7 +397,7 @@ const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, 
             <div className="hover:text-white transition-colors duration-300 text-stone-400 flex flex-row items-center justify-center px-4 gap-4">
               <div className="border-r-2 border-r-black/30 cursor-pointer">
                 <span className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] [text-orientation:upright]  font-sans font-semibold ">
-                  Shop Street
+                  Shop Urban
                 </span>
               </div>
               <div className="w-50 h-90 overflow-hidden rounded-sm cursor-pointer hover:shadow-lg transition-shadow duration-500 relative group">
@@ -302,10 +461,10 @@ const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, 
 
       <div className={`${isHamOpen ? "block" : "hidden"} md:hidden mt-3 text-center`}>
         <div className="rounded-2xl bg-black/40 backdrop-blur-md p-4 flex flex-col gap-3 text-stone-300">
-          <Link to="/" onClick={() => setIsHamOpen(false)}>Explore</Link>
-          <Link to="/women" onClick={() => setIsHamOpen(false)}>Women</Link>
-          <Link to="/men" onClick={() => setIsHamOpen(false)}>Men</Link>
-          <Link to="/junior" onClick={() => setIsHamOpen(false)}>Junior</Link>
+          <Link to={`/${currency}/explore`} onClick={() => setIsHamOpen(false)}>Explore</Link>
+          <Link to={`/${currency}/women`} onClick={() => setIsHamOpen(false)}>Women</Link>
+          <Link to={`/${currency}/men`} onClick={() => setIsHamOpen(false)}>Men</Link>
+          <Link to={`/${currency}/junior`} onClick={() => setIsHamOpen(false)}>Junior</Link>
 
           <div className="h-px bg-white/30 my-2" />
 
@@ -343,9 +502,18 @@ const currencyDD = useHoverDropdown({ closeDelay: 200, onOpen: navbarHoldSolid, 
               <FontAwesomeIcon icon={faSearch} />
             </span>
             
-            <a href="#"><FontAwesomeIcon icon={faUser} /></a>
-            <a href="#"><FontAwesomeIcon icon={faHeart} /></a>
-            <a href="#"><FontAwesomeIcon icon={faShoppingBasket} /></a>
+            <Link to="/account" 
+            className="flex items-center">
+              <FontAwesomeIcon icon={faUser} />
+            </Link>
+            <Link to="/favorites" 
+            className="flex items-center">
+              <FontAwesomeIcon icon={faHeart} />
+            </Link>
+            <Link to="/cart" 
+            className="flex items-center">
+              <FontAwesomeIcon icon={faShoppingBasket} />
+            </Link>
             
           </div>
           {isSearchOpen && (
