@@ -69,7 +69,7 @@ export default function PictureCarousel() {
           type="button"
           onClick={goToPrevious}
           className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-white/20 backdrop-blur-sm
-           hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100"
+          hover:bg-white/30 transition-all duration-300 opacity-0 group-hover:opacity-100"
           aria-label="Previous"
         >
           <FontAwesomeIcon icon={faChevronLeft} className="text-zinc-700 text-xl" />

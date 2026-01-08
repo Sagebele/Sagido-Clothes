@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +17,10 @@ const Navbar = () => {
   const [isHamOpen, setIsHamOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const [currency, setCurrency] = useState("EUR €");
+  const currencyDropdownRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,11 +30,34 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as HTMLElement;
+      if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(target)) {
+        setIsCurrencyOpen(false);
+      }
+    };
+
+    if (isCurrencyOpen) {
+      document.addEventListener("click", handleClickOutside, { passive: true });
+      document.addEventListener("touchstart", handleClickOutside, { passive: true });
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+        document.removeEventListener("touchstart", handleClickOutside);
+      };
+    }
+  }, [isCurrencyOpen]);
+
 
   const handleSearchClick = () => {
     setIsSearchOpen((prev) => !prev);
     setNavbar({ variant: isSearchOpen ? "transparent" : "solid" });
   }
+
+  const handleCurrency = (currency: string) => {
+    setIsCurrencyOpen((v) => !v);
+    setCurrency(currency);
+  };
 
   const shouldBeTransparent = config.variant === "transparent" && !isScrolled;
 
@@ -49,7 +76,6 @@ const Navbar = () => {
   return (
     <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
-        {/* Left links (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="flex items-center gap-2 nav-a">Explore</Link>
           <Link to="/women" className="flex items-center gap-2 nav-a ">Women</Link>
@@ -57,7 +83,6 @@ const Navbar = () => {
           <Link to="/junior" className="flex items-center gap-2 nav-a ">Junior</Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden p-2 rounded-lg hover:bg-white/10"
           onClick={() => setIsHamOpen((v) => !v)}
@@ -66,12 +91,10 @@ const Navbar = () => {
           <FontAwesomeIcon icon={isHamOpen ? faXmark : faBars} />
         </button>
 
-        {/* Logo */}
         <div className="text-2xl font-bold absolute left-1/2 transform -translate-x-1/2 z-10">
           <Link to="/" className="flex items-center ">Sagido</Link>
         </div>
 
-        {/* Right icons (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
           <a href="#" className="flex items-center gap-2 nav-a ">USA $</a>
 
@@ -121,7 +144,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Mobile dropdown */}
       <div className={`${isHamOpen ? "block" : "hidden"} md:hidden mt-3 text-center`}>
         <div className="rounded-2xl bg-black/40 backdrop-blur-md p-4 flex flex-col gap-3 text-stone-300">
           <Link to="/" onClick={() => setIsHamOpen(false)}>Explore</Link>
@@ -131,9 +153,31 @@ const Navbar = () => {
 
           <div className="h-px bg-white/30 my-2" />
 
-          <a href="#" className="text-center">
-            USA $
-          </a>
+          <div className="flex flex-row items-center justify-center gap-4 mb-2">
+            <span
+              onClick={() => {setIsCurrencyOpen((v) => !v);}}
+              className={`${isCurrencyOpen ? "hidden" : "block"} cursor-pointer`}
+            >
+              {currency}
+            </span>
+            <div 
+              ref={currencyDropdownRef}
+              className={`${isCurrencyOpen ? "block" : "hidden"} flex flex-row rounded-sm p-2`}
+            >
+              <button
+              className="px-4 py-2 text-left hover:bg-white/10 rounded"
+              onClick={() => handleCurrency("USD $")}
+            >
+              USD $
+            </button>
+            <button
+              className="px-4 py-2 text-left hover:bg-white/10 rounded"
+              onClick={() => handleCurrency("EUR €")}
+            >
+              EUR €
+            </button>
+          </div>
+          </div>
 
           
           <div className="flex items-center justify-center gap-6 pt-2">
