@@ -107,7 +107,7 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
   const textTone = setNavbarTextTone(config.tone);
 
   const textFont = "font-delius";
-  const DDlinks = "text-stone-400 hover:text-white nav-a font-sans"
+  const DDlinks = "text-white hover:text-black/20 nav-a font-sans"
 
   return (
     <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
@@ -389,7 +389,7 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
             // men image
             className="flex items-center justify-center">
               <img
-                src="https://www.refinery29.com/images/11085368.jpg?crop=3306%2C3968%2Cx4%2Cy675&format=webp&height=912&quality=85&width=760"
+                src="https://s3.r29static.com/bin/entry/e1f/x%2C80/1590637/image.jpg"
                 alt="Men Collection"
                 className="w-32 h-32 object-cover rounded-lg shadow-lg"
               />
@@ -473,9 +473,9 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
             // woman image
             className="flex items-center justify-center">
               <img
-                src="https://s3.r29static.com/bin/entry/e1f/x%2C80/1590637/image.jpg"
+                src="https://www.refinery29.com/images/11085368.jpg?crop=3306%2C3968%2Cx4%2Cy675&format=webp&height=912&quality=85&width=760"
                 alt="Women Collection"
-                className="w-50 h-60 object-fit rounded-sm shadow-lg hover:scale-105"
+                className="w-full h-full object-cover hover:scale-105 duration-300"
               />
             </div>
 
@@ -566,7 +566,8 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
                 />
                 <img 
                   src="https://images.unsplash.com/photo-1762342677678-5f73eee013ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Classic fashion 2" className="w-full h-full object-cover hover:scale-105 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                  alt="Classic fashion 2" 
+                  className="w-full h-full object-cover hover:scale-105 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
                 />
               </div>
               <div className="border-l-2 border-l-black/30 cursor-pointer">
@@ -654,7 +655,8 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
                   }
                 }}
                 placeholder="Search..."
-                className="w-full px-4 py-2 rounded-lg bg-black/30 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/30"
+                className="w-full px-4 py-2 rounded-lg bg-black/30 border border-white/20 text-white
+                 focus:outline-none focus:ring-2 focus:ring-white/30"
               />
             </div>
           )}
