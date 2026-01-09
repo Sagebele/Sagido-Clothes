@@ -8,14 +8,6 @@ This project showcases a complete e-commerce frontend with responsive design, dy
 
 
 
-[▶ Preview video]
-
-https://github.com/user-attachments/assets/533eb793-cab0-4948-89fa-84b2c27f1713
-
-
-
-
-
 ## ✨ Current Features
 
 ### 🧭 Navigation & Layout
@@ -117,6 +109,24 @@ The goal of this project is to create a **fully functional fashion e-commerce pl
 
 ```
 src/
+├── App.css
+├── App.tsx
+├── assets/
+│   └── images/
+│       └── HomePage/
+│           ├── aboutUs.jpg
+│           ├── backgroundImage.jpg
+│           ├── carousel/
+│           │   ├── junior-back.jpg
+│           │   ├── junior-front.jpg
+│           │   ├── man-back.jpg
+│           │   ├── man-front.png
+│           │   ├── woman-back.jpg
+│           │   └── woman-front.jpg
+│           ├── juniorCardImage.jpg
+│           ├── linkWebsite.jpg
+│           ├── manCardImage.jpg
+│           └── womanCardImage.jpg
 ├── components/
 │   ├── HomePage/
 │   │   ├── AboutUs.tsx
@@ -133,20 +143,20 @@ src/
 │   ├── ThemeProvider.tsx
 │   ├── useNavbar.ts
 │   └── useTheme.ts
+├── Hooks/
+│   └── HoverDropdown.tsx
+├── index.css
 ├── layouts/
 │   └── RootLayout.tsx
+├── main.tsx
 ├── pages/
 │   ├── HomePage.tsx
 │   ├── JuniorPage.tsx
 │   ├── MenPage.tsx
 │   └── WomenPage.tsx
-├── assets/
-│   └── images/
-│   │   ├── HomePage/
-│   │   | ├──Carousel
-│   │   ├── Men
-├── styles/
-└── main.tsx
+└── styles/
+    ├── AboutUs.css
+    └── Header.css
 ```
 
 ---
