@@ -9,7 +9,7 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { setNavbarTextTone, useNavbar } from "../context/useNavbar";
+import { useNavbar } from "../context/useNavbar";
 import { useHoverDropdown } from "../Hooks/HoverDropdown";
 
 type Currency = "eur" | "usd";
@@ -102,12 +102,12 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
     "fixed top-0 left-0 right-0 z-50 px-3 py-4 transition-all duration-300";
 
   const navBg = config.variant === "solid" || isScrolled
-    ? "bg-black/20 backdrop-blur-md border-b border-white/10"
+    ? "bg-black/30 backdrop-blur-md border-b border-white/10"
     : "bg-transparent border-b border-transparent";
-  const textTone = setNavbarTextTone(config.tone);
+  const textTone = (navBg === "bg-transparent border-b border-transparent") ? "text-zinc-900" : "text-white";
 
   const textFont = "font-delius";
-  const DDlinks = "text-white hover:text-black/20 nav-a font-sans"
+  const DDlinks = "text-white nav-a font-sans"
 
   return (
     <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
@@ -236,80 +236,93 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={juniorDD.openNow}
           onMouseLeave={juniorDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5">
-            <div className="flex items-center justify-center">
-              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+          <div className="p-4 text-white max-w-7xl mx-auto flex gap-10 font-sans">
+            <div className="flex items-start justify-start pt-10 shrink-0">
+              <span className="[writing-mode:vertical-lr] uppercase cursor-pointer tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold ">
                 Junior
-              </p>
+              </span>
             </div>
-            <div className="grid gap-2">
-              <Link to={`/${currency}/junior/new-collection`}
-              className={`${DDlinks}`}>
-                New Collection
-              </Link>
-              <Link to={`/${currency}/junior/summer-vibes`}
-              className={`${DDlinks}`}>
-                Summer Vibes
-              </Link>
-              <Link to={`/${currency}/junior/playful-prints`}
-              className={`${DDlinks}`}>
-                Playful Prints
-              </Link>
-              <Link to={`/${currency}/junior/school-essentials`}
-              className={`${DDlinks}`}>
-                School Essentials
-              </Link>
+            <div className="flex-1 grid grid-cols-4 gap-4">
+              <div className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <Link to={`/${currency}/junior/new-collection`}
+                  className={`${DDlinks}`}>
+                    New Collection
+                  </Link>
+                </div>
+                <Link to={`/${currency}/junior/summer-vibes`}
+                className={`${DDlinks}`}>
+                  Summer Vibes
+                </Link>
+                <Link to={`/${currency}/junior/playful-prints`}
+                className={`${DDlinks}`}>
+                  Playful Prints
+                </Link>
+                <Link to={`/${currency}/junior/school-essentials`}
+                className={`${DDlinks}`}>
+                  School Essentials
+                </Link>
+              </div>
+              <div
+              // clothing
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Clothing
+                  </span>
+                </div>
+                <Link to={`/${currency}/junior/t-shirts`}
+                className={`${DDlinks}`}>
+                  T-Shirts
+                </Link>
+                <Link to={`/${currency}/junior/hoodies`}
+                className={`${DDlinks}`}>
+                  Hoodies
+                </Link>
+                <Link to={`/${currency}/junior/jeans`}
+                className={`${DDlinks}`}>
+                  Jeans
+                </Link>
+                <Link to={`/${currency}/junior/dresses`}
+                className={`${DDlinks}`}>
+                  Dresses & Skirts
+                </Link>
+              </div>
+              <div
+              // accessories
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Accessories
+                  </span>
+                </div>
+                <Link to={`/${currency}/junior/backpacks`}
+                className={`${DDlinks}`}>
+                  Backpacks
+                </Link>
+                <Link to={`/${currency}/junior/shoes`}
+                className={`${DDlinks}`}>
+                  Shoes & Sneakers
+                </Link>
+                <Link to={`/${currency}/junior/hats`}
+                className={`${DDlinks}`}>
+                  Hats & Caps
+                </Link>
+                <Link to={`/${currency}/junior/jewelry`}
+                className={`${DDlinks}`}>
+                  Fun Jewelry
+                </Link>
+              </div>
+              <div
+              // junior image
+              className="relative flex items-center justify-center cursor-pointer overflow-hidden">
+                <img
+                  src="https://i.pinimg.com/originals/a6/7d/3f/a67d3f9669444032018272ed85784955.jpg"
+                  alt="Junior Collection"
+                  className="w-full h-100 object-cover rounded-sm hover:scale-110 transition-transform duration-300"
+                />
+              </div>
             </div>
-            <div
-            // clothing
-            className="grid gap-2">
-              <Link to={`/${currency}/junior/t-shirts`}
-              className={`${DDlinks}`}>
-                T-Shirts
-              </Link>
-              <Link to={`/${currency}/junior/hoodies`}
-              className={`${DDlinks}`}>
-                Hoodies
-              </Link>
-              <Link to={`/${currency}/junior/jeans`}
-              className={`${DDlinks}`}>
-                Jeans
-              </Link>
-              <Link to={`/${currency}/junior/dresses`}
-              className={`${DDlinks}`}>
-                Dresses & Skirts
-              </Link>
-            </div>
-            <div
-            // accessories
-            className="grid gap-2">
-              <Link to={`/${currency}/junior/backpacks`}
-              className={`${DDlinks}`}>
-                Backpacks
-              </Link>
-              <Link to={`/${currency}/junior/shoes`}
-              className={`${DDlinks}`}>
-                Shoes & Sneakers
-              </Link>
-              <Link to={`/${currency}/junior/hats`}
-              className={`${DDlinks}`}>
-                Hats & Caps
-              </Link>
-              <Link to={`/${currency}/junior/jewelry`}
-              className={`${DDlinks}`}>
-                Fun Jewelry
-              </Link>
-            </div>
-            <div
-            // junior image
-            className="flex items-center justify-center">
-              <img
-                src="https://i.pinimg.com/originals/a6/7d/3f/a67d3f9669444032018272ed85784955.jpg"
-                alt="Junior Collection"
-                className="w-32 h-32 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-
           </div>
         </div>
       )}
@@ -319,82 +332,96 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={menDD.openNow}
           onMouseLeave={menDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5 font-sans">
-            <div className="flex items-center justify-center">
-              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+          <div className="p-4 text-white max-w-7xl mx-auto flex gap-10 font-sans">
+            <div className="flex items-start justify-start pt-10 shrink-0">
+              <span className="[writing-mode:vertical-lr] uppercase cursor-pointer tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold ">
                 Men
-              </p>
+              </span>
             </div>
-            <div
-            // collections
-            className="grid gap-2">
-              <Link to={`/${currency}/men/new-collection`}
-              className={`${DDlinks}`}>
-                New Collection
-              </Link>
-              <Link to={`/${currency}/men/winter-collection`}
-              className={`${DDlinks}`}>
-                Winter Collection
-              </Link>
-              <Link to={`/${currency}/men/sportswear`}
-              className={`${DDlinks}`}>
-                Sportswear
-              </Link>
-              <Link to={`/${currency}/men/formal-wear`}
-              className={`${DDlinks}`}>
-                Formal Wear
-              </Link>
+            <div className="flex-1 grid grid-cols-4 gap-4">
+              <div className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <Link to={`/${currency}/men/new-collection`}
+                  className={`${DDlinks}`}>
+                    Collections
+                  </Link>
+                </div>
+                <Link to={`/${currency}/men/winter-collection`}
+                className={`${DDlinks}`}>
+                  Winter Collection
+                </Link>
+                <Link to={`/${currency}/men/sportswear`}
+                className={`${DDlinks}`}>
+                  Sportswear
+                </Link>
+                <Link to={`/${currency}/men/formal-wear`}
+                className={`${DDlinks}`}>
+                  Formal Wear
+                </Link>
+              </div>
+              <div
+              // clothing
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Clothing
+                  </span>
+                </div>
+                <Link to={`/${currency}/men/shirts`}
+                className={`${DDlinks}`}>
+                  Shirts
+                </Link>
+                <Link to={`/${currency}/men/t-shirts`}
+                className={`${DDlinks}`}>
+                  T-Shirts
+                </Link>
+                <Link to={`/${currency}/men/trousers`}
+                className={`${DDlinks}`}>
+                  Trousers
+                </Link>
+                <Link to={`/${currency}/men/jackets`}
+                className={`${DDlinks}`}>
+                  Jackets & Coats
+                </Link>
+              </div>
+              <div
+              // accessories
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Accessories
+                  </span>
+                </div>
+                <Link to={`/${currency}/men/shoes`}
+                className={`${DDlinks}`}>
+                  Shoes
+                </Link>
+                <Link to={`/${currency}/men/watches`}
+                className={`${DDlinks}`}>
+                  Watches
+                </Link>
+                <Link to={`/${currency}/men/ties`}
+                className={`${DDlinks}`}>
+                  Ties & Bowties
+                </Link>
+                <Link to={`/${currency}/men/belts`}
+                className={`${DDlinks}`}>
+                  Belts & Wallets
+                </Link>
+              </div>
+              <div
+              // men image
+              className="relative flex items-center justify-center cursor-pointer overflow-hidden" >
+                <img
+                  src="https://s3.r29static.com/bin/entry/e1f/x%2C80/1590637/image.jpg"
+                  alt="Men Collection"
+                  className="w-full h-100 object-cover rounded-sm hover:scale-110 transition-transform duration-300"
+                />
+                <span className="absolute right-0 top-1/2 transform -translate-y-1/2 border-l border-l-black text-black font-semibold cursor-pointer [writing-mode:vertical-lr] uppercase tracking-[0.35em]">
+                  New Arrivals
+                </span>
+              </div>
             </div>
-            <div
-            // clothing
-            className="grid gap-2">
-              <Link to={`/${currency}/men/shirts`}
-              className={`${DDlinks}`}>
-                Shirts
-              </Link>
-              <Link to={`/${currency}/men/t-shirts`}
-              className={`${DDlinks}`}>
-                T-Shirts
-              </Link>
-              <Link to={`/${currency}/men/trousers`}
-              className={`${DDlinks}`}>
-                Trousers
-              </Link>
-              <Link to={`/${currency}/men/jackets`}
-              className={`${DDlinks}`}>
-                Jackets & Coats
-              </Link>
-            </div>
-            <div
-            // accessories
-            className="grid gap-2">
-              <Link to={`/${currency}/men/shoes`}
-              className={`${DDlinks}`}>
-                Shoes
-              </Link>
-              <Link to={`/${currency}/men/watches`}
-              className={`${DDlinks}`}>
-                Watches
-              </Link>
-              <Link to={`/${currency}/men/ties`}
-              className={`${DDlinks}`}>
-                Ties & Bowties
-              </Link>
-              <Link to={`/${currency}/men/belts`}
-              className={`${DDlinks}`}>
-                Belts & Wallets
-              </Link>
-            </div>
-            <div
-            // men image
-            className="flex items-center justify-center">
-              <img
-                src="https://s3.r29static.com/bin/entry/e1f/x%2C80/1590637/image.jpg"
-                alt="Men Collection"
-                className="w-32 h-32 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-
           </div>
         </div>
       )}
@@ -404,81 +431,99 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={womenDD.openNow}
           onMouseLeave={womenDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5">
-            <div className="flex items-center justify-center">
-              <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
+          <div className="p-4 text-white max-w-7xl mx-auto flex gap-10 font-sans">
+            <div className="flex items-start justify-start pt-10 shrink-0">
+              <span className="[writing-mode:vertical-lr] uppercase cursor-pointer tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold ">
                 Women
-              </p>
+              </span>
             </div>
-            <div
-            // collections
-            className="grid gap-2">
-              <Link to={`/${currency}/women/spring-collection`}
-              className={`${DDlinks}`}>
-                Spring Collection
-              </Link>
-              <Link to={`/${currency}/women/summer-collection`}
-              className={`${DDlinks}`}>
-                Summer Collection
-              </Link>
-              <Link to={`/${currency}/women/essentials`}
-              className={`${DDlinks}`}>
-                Essentials
-              </Link>
-              <Link to={`/${currency}/women/denim`}
-              className={`${DDlinks}`}>
-                Denim Collection
-              </Link>
+            <div className="flex-1 grid grid-cols-4 gap-4">
+              <div
+              // collections
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <Link to={`/${currency}/women/spring-collection`}
+                  className={`${DDlinks}`}>
+                    Collections
+                  </Link>
+                </div>
+                <Link to={`/${currency}/women/spring-collection`}
+                className={`${DDlinks}`}>
+                  Spring Collection
+                </Link>
+                <Link to={`/${currency}/women/summer-collection`}
+                className={`${DDlinks}`}>
+                  Summer Collection
+                </Link>
+                <Link to={`/${currency}/women/essentials`}
+                className={`${DDlinks}`}>
+                  Essentials
+                </Link>
+                <Link to={`/${currency}/women/denim`}
+                className={`${DDlinks}`}>
+                  Denim Collection
+                </Link>
+              </div>
+              <div
+              // clothing
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Clothing
+                  </span>
+                </div>
+                <Link to={`/${currency}/women/dresses`}
+                className={`${DDlinks}`}>
+                  Dresses
+                </Link>
+                <Link to={`/${currency}/women/tops`}
+                className={`${DDlinks}`}>
+                  Tops
+                </Link>
+                <Link to={`/${currency}/women/bottoms`}
+                className={`${DDlinks}`}>
+                  Bottoms
+                </Link>
+                <Link to={`/${currency}/women/outerwear`}
+                className={`${DDlinks}`}>
+                  Outerwear
+                </Link>
+              </div>
+              <div
+              // accessories
+              className="flex flex-col items-start justify-start gap-2">
+                <div className="pb-5 text-2xl">
+                  <span className={`${DDlinks}`}>
+                    Accessories
+                  </span>
+                </div>
+                <Link to={`/${currency}/women/bags`}
+                className={`${DDlinks}`}>
+                  Bags
+                </Link>
+                <Link to={`/${currency}/women/shoes`}
+                className={`${DDlinks}`}>
+                  Shoes
+                </Link>
+                <Link to={`/${currency}/women/jewelry`}
+                className={`${DDlinks}`}>
+                  Jewelry
+                </Link>
+                <Link to={`/${currency}/women/accessories`}
+                className={`${DDlinks}`}>
+                  Accessories
+                </Link>
+              </div>
+              <div
+              // woman image
+              className="relative flex items-center justify-center cursor-pointer overflow-hidden">
+                <img
+                  src="https://www.refinery29.com/images/11085368.jpg?crop=3306%2C3968%2Cx4%2Cy675&format=webp&height=912&quality=85&width=760"
+                  alt="Women Collection"
+                  className="w-full h-100 object-cover rounded-sm hover:scale-110 transition-transform duration-300"
+                />
+              </div>
             </div>
-            <div
-            // clothing
-            className="grid gap-2">
-              <Link to={`/${currency}/women/dresses`}
-              className={`${DDlinks}`}>
-                Dresses
-              </Link>
-              <Link to={`/${currency}/women/tops`}
-              className={`${DDlinks}`}>
-                Tops
-              </Link>
-              <Link to={`/${currency}/women/bottoms`}
-              className={`${DDlinks}`}>
-                Bottoms
-              </Link>
-              <Link to={`/${currency}/women/outerwear`}
-              className={`${DDlinks}`}>
-                Outerwear
-              </Link>
-            </div>
-            <div
-            // accessories
-            className="grid gap-2">
-              <Link to={`/${currency}/women/bags`}
-              className={`${DDlinks}`}>
-              </Link>
-              <Link to={`/${currency}/women/shoes`}
-              className={`${DDlinks}`}>
-                Shoes
-              </Link>
-              <Link to={`/${currency}/women/jewelry`}
-              className={`${DDlinks}`}>
-                Jewelry
-              </Link>
-              <Link to={`/${currency}/women/accessories`}
-              className={`${DDlinks}`}>
-                Accessories
-              </Link>
-            </div>
-            <div
-            // woman image
-            className="flex items-center justify-center">
-              <img
-                src="https://www.refinery29.com/images/11085368.jpg?crop=3306%2C3968%2Cx4%2Cy675&format=webp&height=912&quality=85&width=760"
-                alt="Women Collection"
-                className="w-full h-full object-cover hover:scale-105 duration-300"
-              />
-            </div>
-
           </div>
         </div>
       )}

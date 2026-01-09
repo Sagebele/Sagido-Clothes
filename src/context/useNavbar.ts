@@ -32,5 +32,5 @@ export const setNavbarBg= (variant: "transparent" | "solid") => {
 }
 
 export const setNavbarTextTone = (tone: "light" | "dark") => {
-    return tone === "light" ? "text-zinc-900" : "text-stone-200";
+    return tone === "light" ? "text-zinc-900" : "text-white";
 }
