@@ -107,6 +107,7 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
   const textTone = setNavbarTextTone(config.tone);
 
   const textFont = "font-delius";
+  const DDlinks = "text-stone-400 hover:text-white nav-a font-sans"
 
   return (
     <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
@@ -179,16 +180,26 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
 
               {currencyDD.open && (
                 <div
-                  className={`absolute right-0 my-3 w-fit ${navBg} backdrop-blur-md rounded-md shadow-lg z-20`}
+                  className={`absolute left-1/2 transform -translate-x-1/2 top-10 w-fit ${navBg} rounded-md shadow-lg z-20 text-center font-sans`}
                   onMouseEnter={currencyDD.openNow}
                   onMouseLeave={currencyDD.closeLater}
                 >
-                  <button onClick={() => { handleCurrency("usd"); currencyDD.closeNow(); }}>
-                    USD $
-                  </button>
-                  <button onClick={() => { handleCurrency("eur"); currencyDD.closeNow(); }}>
-                    EUR €
-                  </button>
+                  <div className="mb-1">
+                    <button
+                      onClick={() => { handleCurrency("usd"); currencyDD.closeNow(); }}
+                      className="w-full px-3 py-1 text-stone-300 hover:text-white hover:bg-white/10 rounded transition-colors duration-200 cursor-pointer whitespace-nowrap"
+                    >
+                      USD $
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => { handleCurrency("eur"); currencyDD.closeNow(); }}
+                      className="w-full px-3 py-1 text-stone-300 hover:text-white hover:bg-white/10 rounded transition-colors duration-200 cursor-pointer whitespace-nowrap"
+                    >
+                      EUR €
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -225,38 +236,80 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={juniorDD.openNow}
           onMouseLeave={juniorDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5">
             <div className="flex items-center justify-center">
               <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
                 Junior
               </p>
             </div>
             <div className="grid gap-2">
-              <Link to={`/${currency}/junior/new`}
-              className="hover:text-stone-200">
-                New arrivals
+              <Link to={`/${currency}/junior/new-collection`}
+              className={`${DDlinks}`}>
+                New Collection
               </Link>
-              <Link to={`/${currency}/junior/shoes`}
-              className="hover:text-stone-200">
-                Shoes
+              <Link to={`/${currency}/junior/summer-vibes`}
+              className={`${DDlinks}`}>
+                Summer Vibes
               </Link>
-              <Link to={`/${currency}/junior/clothing`}
-              className="hover:text-stone-200">
-                Clothing
+              <Link to={`/${currency}/junior/playful-prints`}
+              className={`${DDlinks}`}>
+                Playful Prints
               </Link>
-              <Link to={`/${currency}/junior/accessories`}
-              className="hover:text-stone-200">
-                Accessories
-              </Link>
-              <Link to={`/${currency}/junior/sportswear`}
-              className="hover:text-stone-200">
-                Sportswear
-              </Link>
-              <Link to={`/${currency}/junior/sale`}
-              className="hover:text-stone-200">
-                Sale
+              <Link to={`/${currency}/junior/school-essentials`}
+              className={`${DDlinks}`}>
+                School Essentials
               </Link>
             </div>
+            <div
+            // clothing
+            className="grid gap-2">
+              <Link to={`/${currency}/junior/t-shirts`}
+              className={`${DDlinks}`}>
+                T-Shirts
+              </Link>
+              <Link to={`/${currency}/junior/hoodies`}
+              className={`${DDlinks}`}>
+                Hoodies
+              </Link>
+              <Link to={`/${currency}/junior/jeans`}
+              className={`${DDlinks}`}>
+                Jeans
+              </Link>
+              <Link to={`/${currency}/junior/dresses`}
+              className={`${DDlinks}`}>
+                Dresses & Skirts
+              </Link>
+            </div>
+            <div
+            // accessories
+            className="grid gap-2">
+              <Link to={`/${currency}/junior/backpacks`}
+              className={`${DDlinks}`}>
+                Backpacks
+              </Link>
+              <Link to={`/${currency}/junior/shoes`}
+              className={`${DDlinks}`}>
+                Shoes & Sneakers
+              </Link>
+              <Link to={`/${currency}/junior/hats`}
+              className={`${DDlinks}`}>
+                Hats & Caps
+              </Link>
+              <Link to={`/${currency}/junior/jewelry`}
+              className={`${DDlinks}`}>
+                Fun Jewelry
+              </Link>
+            </div>
+            <div
+            // junior image
+            className="flex items-center justify-center">
+              <img
+                src="https://i.pinimg.com/originals/a6/7d/3f/a67d3f9669444032018272ed85784955.jpg"
+                alt="Junior Collection"
+                className="w-32 h-32 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+
           </div>
         </div>
       )}
@@ -266,46 +319,82 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={menDD.openNow}
           onMouseLeave={menDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5 font-sans">
             <div className="flex items-center justify-center">
               <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
                 Men
               </p>
             </div>
-            <div className="grid gap-2">
-              <Link to={`/${currency}/men/new`}
-              className="hover:text-white">
-                New arrivals
+            <div
+            // collections
+            className="grid gap-2">
+              <Link to={`/${currency}/men/new-collection`}
+              className={`${DDlinks}`}>
+                New Collection
               </Link>
-              <Link to={`/${currency}/men/shoes`}
-              className="hover:text-white">
-                Shoes
-              </Link>
-              <Link to={`/${currency}/men/clothing`}
-              className="hover:text-white">
-                Clothing
-              </Link>
-              <Link to={`/${currency}/men/jackets`}
-              className="hover:text-white">
-                Jackets & Coats
-              </Link>
-              <Link to={`/${currency}/men/jeans`}
-              className="hover:text-white">
-                Jeans & Pants
-              </Link>
-              <Link to={`/${currency}/men/accessories`}
-              className="hover:text-white">
-                Accessories
+              <Link to={`/${currency}/men/winter-collection`}
+              className={`${DDlinks}`}>
+                Winter Collection
               </Link>
               <Link to={`/${currency}/men/sportswear`}
-              className="hover:text-white">
+              className={`${DDlinks}`}>
                 Sportswear
               </Link>
-              <Link to={`/${currency}/men/sale`}
-              className="hover:text-white">
-                Sale
+              <Link to={`/${currency}/men/formal-wear`}
+              className={`${DDlinks}`}>
+                Formal Wear
               </Link>
             </div>
+            <div
+            // clothing
+            className="grid gap-2">
+              <Link to={`/${currency}/men/shirts`}
+              className={`${DDlinks}`}>
+                Shirts
+              </Link>
+              <Link to={`/${currency}/men/t-shirts`}
+              className={`${DDlinks}`}>
+                T-Shirts
+              </Link>
+              <Link to={`/${currency}/men/trousers`}
+              className={`${DDlinks}`}>
+                Trousers
+              </Link>
+              <Link to={`/${currency}/men/jackets`}
+              className={`${DDlinks}`}>
+                Jackets & Coats
+              </Link>
+            </div>
+            <div
+            // accessories
+            className="grid gap-2">
+              <Link to={`/${currency}/men/shoes`}
+              className={`${DDlinks}`}>
+                Shoes
+              </Link>
+              <Link to={`/${currency}/men/watches`}
+              className={`${DDlinks}`}>
+                Watches
+              </Link>
+              <Link to={`/${currency}/men/ties`}
+              className={`${DDlinks}`}>
+                Ties & Bowties
+              </Link>
+              <Link to={`/${currency}/men/belts`}
+              className={`${DDlinks}`}>
+                Belts & Wallets
+              </Link>
+            </div>
+            <div
+            // men image
+            className="flex items-center justify-center">
+              <img
+                src="https://www.refinery29.com/images/11085368.jpg?crop=3306%2C3968%2Cx4%2Cy675&format=webp&height=912&quality=85&width=760"
+                alt="Men Collection"
+                className="w-32 h-32 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+
           </div>
         </div>
       )}
@@ -315,50 +404,81 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
           onMouseEnter={womenDD.openNow}
           onMouseLeave={womenDD.closeLater}
         >
-          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-3">
+          <div className="p-4 text-white max-w-7xl mx-auto grid grid-cols-5">
             <div className="flex items-center justify-center">
               <p className="[writing-mode:vertical-lr] uppercase tracking-[0.35em] border-r-2 border-r-black/30 [text-orientation:upright] font-sans font-semibold ">
                 Women
               </p>
             </div>
-            <div className="grid gap-2">
-              <Link to={`/${currency}/women/new`}
-              className="hover:text-white">
-                New arrivals
+            <div
+            // collections
+            className="grid gap-2">
+              <Link to={`/${currency}/women/spring-collection`}
+              className={`${DDlinks}`}>
+                Spring Collection
               </Link>
-              <Link to={`/${currency}/women/shoes`}
-              className="hover:text-white">
-                Shoes
+              <Link to={`/${currency}/women/summer-collection`}
+              className={`${DDlinks}`}>
+                Summer Collection
               </Link>
-              <Link to={`/${currency}/women/clothing`}
-              className="hover:text-white">
-                Clothing
+              <Link to={`/${currency}/women/essentials`}
+              className={`${DDlinks}`}>
+                Essentials
               </Link>
-              <Link to={`/${currency}/women/dresses`}
-              className="hover:text-white">
-                Dresses
-              </Link>
-              <Link to={`/${currency}/women/jackets`}
-              className="hover:text-white">
-                Jackets & Coats
-              </Link>
-              <Link to={`/${currency}/women/jeans`}
-              className="hover:text-white">
-                Jeans & Pants
-              </Link>
-              <Link to={`/${currency}/women/accessories`}
-              className="hover:text-white">
-                Accessories
-              </Link>
-              <Link to={`/${currency}/women/sportswear`}
-              className="hover:text-white">
-                Sportswear
-              </Link>
-              <Link to={`/${currency}/women/sale`}
-              className="hover:text-white">
-                Sale
+              <Link to={`/${currency}/women/denim`}
+              className={`${DDlinks}`}>
+                Denim Collection
               </Link>
             </div>
+            <div
+            // clothing
+            className="grid gap-2">
+              <Link to={`/${currency}/women/dresses`}
+              className={`${DDlinks}`}>
+                Dresses
+              </Link>
+              <Link to={`/${currency}/women/tops`}
+              className={`${DDlinks}`}>
+                Tops
+              </Link>
+              <Link to={`/${currency}/women/bottoms`}
+              className={`${DDlinks}`}>
+                Bottoms
+              </Link>
+              <Link to={`/${currency}/women/outerwear`}
+              className={`${DDlinks}`}>
+                Outerwear
+              </Link>
+            </div>
+            <div
+            // accessories
+            className="grid gap-2">
+              <Link to={`/${currency}/women/bags`}
+              className={`${DDlinks}`}>
+              </Link>
+              <Link to={`/${currency}/women/shoes`}
+              className={`${DDlinks}`}>
+                Shoes
+              </Link>
+              <Link to={`/${currency}/women/jewelry`}
+              className={`${DDlinks}`}>
+                Jewelry
+              </Link>
+              <Link to={`/${currency}/women/accessories`}
+              className={`${DDlinks}`}>
+                Accessories
+              </Link>
+            </div>
+            <div
+            // woman image
+            className="flex items-center justify-center">
+              <img
+                src="https://s3.r29static.com/bin/entry/e1f/x%2C80/1590637/image.jpg"
+                alt="Women Collection"
+                className="w-50 h-60 object-fit rounded-sm shadow-lg hover:scale-105"
+              />
+            </div>
+
           </div>
         </div>
       )}
@@ -476,17 +596,16 @@ const currencyDD = useHoverDropdown({ closeDelay: 100, onOpen: navbarHoldSolid, 
               {currencyLabel}
             </span>
             <div 
-              // ref={currencyDropdownRef}
               className={`${isCurrencyOpen ? "block" : "hidden"} flex flex-row rounded-sm p-2`}
             >
               <button
-              className="px-4 py-2 text-left hover:bg-white/10 rounded"
+              className="px-4 py-2 text-left hover:{navBar} rounded cursor-pointer"
               onClick={() => handleCurrency("usd")}
             >
               USD $
             </button>
             <button
-              className="px-4 py-2 text-left hover:bg-white/10 rounded"
+              className="px-4 py-2 text-left hover:bg-white/10 rounded cursor-pointer"
               onClick={() => handleCurrency("eur")}
             >
               EUR €
