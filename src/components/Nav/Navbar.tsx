@@ -23,7 +23,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHamOpen, setIsHamOpen] = useState(false);
 
-  //  mobile search 
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 

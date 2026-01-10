@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import WomenPage from "./pages/WomenPage";
 import MenPage from "./pages/MenPage";
 import JuniorPage from "./pages/JuniorPage";
+import AboutUsPage from "./pages/AboutUsPage";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { NavbarProvider } from "./context/NavbarProvider";
 
@@ -26,6 +27,7 @@ const App = () => {
               <Route path="women" element={<WomenPage />} />
               <Route path="men" element={<MenPage />} />
               <Route path="junior" element={<JuniorPage />} />
+              <Route path="aboutus" element={<AboutUsPage />} />
 
               <Route path="*" element={<Navigate to="." replace />} />
             </Route>
