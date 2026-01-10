@@ -111,22 +111,12 @@ The goal of this project is to create a **fully functional fashion e-commerce pl
 src/
 ├── App.css
 ├── App.tsx
+├── index.css
+├── main.tsx
 ├── assets/
 │   └── images/
 │       └── HomePage/
-│           ├── aboutUs.jpg
-│           ├── backgroundImage.jpg
-│           ├── carousel/
-│           │   ├── junior-back.jpg
-│           │   ├── junior-front.jpg
-│           │   ├── man-back.jpg
-│           │   ├── man-front.png
-│           │   ├── woman-back.jpg
-│           │   └── woman-front.jpg
-│           ├── juniorCardImage.jpg
-│           ├── linkWebsite.jpg
-│           ├── manCardImage.jpg
-│           └── womanCardImage.jpg
+│           └── carousel/
 ├── components/
 │   ├── HomePage/
 │   │   ├── AboutUs.tsx
@@ -135,7 +125,10 @@ src/
 │   │   ├── FooterHome.tsx
 │   │   ├── Information.tsx
 │   │   └── PictureCarousel.tsx
-│   └── Navbar.tsx
+│   └── Nav/
+│       ├── Navbar.tsx
+│       ├── MainDropdown.tsx
+│       └── DropsConfig.ts
 ├── context/
 │   ├── NavbarContext.ts
 │   ├── NavbarProvider.tsx
@@ -144,11 +137,13 @@ src/
 │   ├── useNavbar.ts
 │   └── useTheme.ts
 ├── Hooks/
-│   └── HoverDropdown.tsx
-├── index.css
+│   └── Navbar/
+│       ├── CurrencyRouting.tsx
+│       ├── HoverDropdown.tsx
+│       ├── NavbarDropdowns.tsx
+│       └── NavbarVariantLock.tsx
 ├── layouts/
 │   └── RootLayout.tsx
-├── main.tsx
 ├── pages/
 │   ├── HomePage.tsx
 │   ├── JuniorPage.tsx

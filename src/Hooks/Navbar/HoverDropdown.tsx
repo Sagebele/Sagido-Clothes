@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Options = {
     closeDelay?: number;
@@ -11,11 +11,15 @@ export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: Options 
     const timeoutRef = useRef<number | null>(null);
 
     const cancel = useCallback(() => {
-        if (timeoutRef.current) {
+        if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
         }
     }, []);
+
+    useEffect(() => {
+        return () => cancel(); 
+    }, [cancel]);
 
     const openNow = useCallback(() => {
         cancel();
