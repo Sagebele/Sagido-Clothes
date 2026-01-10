@@ -6,15 +6,15 @@ type DropdownLink = {
 };
 
 type DropdownColumn = {
-    title: string; // displayed bigger at top
-    titleTo?: string; // optional: if title is clickable
+    title: string; 
+    titleTo?: string; 
     links: DropdownLink[];
 };
 
 type DropdownImage = {
     src: string;
     alt: string;
-    to?: string; // optional: image can be clickable
+    to?: string; 
 };
 
 export type MainDropdownConfig = {
@@ -55,9 +55,9 @@ export function MainDropdown({
         <div className="p-4 text-white max-w-7xl mx-auto flex gap-10 font-sans">
             {/* Side label */}
             <div className="flex items-start justify-start pt-10 shrink-0">
-            <span className="[writing-mode:vertical-lr] uppercase cursor-pointer tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold">
-                {config.sideLabel}
-            </span>
+                <span className="[writing-mode:vertical-lr] uppercase cursor-pointer tracking-[0.35em] border-r-2 border-r-black [text-orientation:upright] font-sans font-semibold">
+                    {config.sideLabel}
+                </span>
             </div>
 
             {/* Main grid */}
@@ -85,12 +85,15 @@ export function MainDropdown({
             {config.image && (
                 <div className="relative flex items-center justify-center cursor-pointer overflow-hidden">
                 {config.image.to ? (
-                    <Link to={config.image.to} className="block w-full">
+                    <Link to={config.image.to} className="block w-full relative group">
                     <img
                         src={config.image.src}
                         alt={config.image.alt}
-                        className="w-full h-100 object-cover rounded-sm hover:scale-110 transition-transform duration-300"
+                        className="w-full h-100 object-cover rounded-sm group-hover:brightness-50 transition-all duration-300"
                     />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-white text-lg font-semibold">Explore</span>
+                    </div>
                     </Link>
                 ) : (
                     <img

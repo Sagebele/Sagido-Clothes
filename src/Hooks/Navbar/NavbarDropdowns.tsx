@@ -1,14 +1,16 @@
+// Hooks/useNavbarDropdowns.ts
 import { useCallback } from "react";
 import { useHoverDropdown } from "./HoverDropdown";
+import { useNavbarVariantLock } from "./NavbarVariantLock";
 
-type Args = {
-    closeDelay?: number;
-    onOpen: () => void;
-    onClose: () => void;
-};
+export function useNavbarDropdowns() {
+    const { holdSolid, release } = useNavbarVariantLock();
 
-export function useNavbarDropdowns({ closeDelay = 200, onOpen, onClose }: Args) {
-    const options = { closeDelay, onOpen, onClose };
+    const options = {
+        closeDelay: 200,
+        onOpen: holdSolid,
+        onClose: release,
+    } as const;
 
     const women = useHoverDropdown(options);
     const men = useHoverDropdown(options);

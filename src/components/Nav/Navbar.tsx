@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useNavbar } from "../../context/useNavbar";
-import { useNavbarVariantLock } from "../../Hooks/Navbar/NavbarVariantLock";
 import { useNavbarDropdowns } from "../../Hooks/Navbar/NavbarDropdowns";
 import { useCurrencyRouting } from "../../Hooks/Navbar/CurrencyRouting";
 import { menDropdownConfig, womenDropdownConfig, juniorDropdownConfig } from "./DropsConfig";
@@ -28,7 +27,6 @@ const Navbar = () => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
 
-  const { holdSolid, release } = useNavbarVariantLock();
   const {
     currency,
     currencyLabel,
@@ -37,11 +35,8 @@ const Navbar = () => {
     setCurrency,
   } = useCurrencyRouting();
 
-  const dds = useNavbarDropdowns({
-    closeDelay: 200,
-    onOpen: holdSolid,
-    onClose: release,
-  });
+  const dds = useNavbarDropdowns();
+
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 0);
@@ -61,7 +56,7 @@ const Navbar = () => {
   const textTone = isSolid ? "text-white" : "text-zinc-900";
 
   const textFont = "font-delius";
-  const DDlinks = "text-white nav-a font-sans";
+  const DDlinks = "text-white nav-a font-sans cursor-pointer";
 
   const submitSearch = (qRaw: string) => {
     const q = qRaw.trim();
