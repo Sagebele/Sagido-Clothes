@@ -7,6 +7,7 @@ import JuniorPage from "./pages/JuniorPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { NavbarProvider } from "./context/NavbarProvider";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const CurrencyGate = () => {
   const saved = localStorage.getItem("currency"); 
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="men" element={<MenPage />} />
               <Route path="junior" element={<JuniorPage />} />
               <Route path="aboutus" element={<AboutUsPage />} />
+              <Route path="privacypolicy" element={<PrivacyPolicy />} />
 
               <Route path="*" element={<Navigate to="." replace />} />
             </Route>

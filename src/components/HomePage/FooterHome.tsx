@@ -16,7 +16,7 @@ const FooterHome = () => {
                         </div>
                         <div className="flex flex-col gap-2 items-center justify-center">
                             <Link to={`/${currency}/aboutus`} className="text-gray-500 hover:text-zinc-900 nav-a transition">About Us</Link>
-                            <Link to={`/${currency}/terms-policy`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Terms & Policy</Link>
+                            <Link to={`/${currency}/privacypolicy`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Terms & Policy</Link>
                         </div>
                     </div>
                     <div className="footer-help flex flex-col">
@@ -88,7 +88,7 @@ const FooterHome = () => {
                             <span className="hidden md:inline-block text-zinc-900 pointer-events-none">|</span>
                             <span className="block md:hidden w-50 h-px bg-zinc-900 my-2 pointer-events-none" aria-hidden="true" />
 
-                            <Link to="/terms" className="text-gray-500 hover:text-gray-900 nav-a">Terms of Service</Link>
+                            <Link to={`/${currency}/privacypolicy`} className="text-gray-500 hover:text-gray-900 nav-a">Privacy Policy</Link>
                     </div>
                 </div>
             </footer>
