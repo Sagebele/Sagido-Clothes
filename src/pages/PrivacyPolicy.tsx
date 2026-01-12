@@ -146,7 +146,7 @@ export default function PrivacyPolicy() {
         <Section title="10. Contact">
           <p className="text-zinc-700">
             For privacy requests or questions, contact us at:{" "}
-            <strong>privacy@sagido.com</strong> (replace with your real email).
+            <strong>sagido@contact.com</strong>
           </p>
         </Section>
 

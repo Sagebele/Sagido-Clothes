@@ -24,10 +24,10 @@ const FooterHome = () => {
                             <h2 className="text-lg font-bold text-zinc-900 border-b border-zinc-900 pb-2">Shop</h2>
                         </div>
                         <div className="flex flex-col gap-2 items-center justify-center">
-                            <Link to="/contact" className="text-gray-500 hover:text-zinc-900 nav-a transition">Contact Us</Link>
-                            <Link to="/shipping" className="text-gray-500 hover:text-zinc-900 nav-a transition">Shipping Information</Link>
-                            <Link to="/returns" className="text-gray-500 hover:text-zinc-900 nav-a transition">Returns & Exchanges</Link>
-                            <Link to="/faqs" className="text-gray-500 hover:text-zinc-900 nav-a transition">FAQs</Link>
+                            <Link to={`/${currency}/contactus`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Contact Us</Link>
+                            <Link to={`/${currency}/shipping`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Shipping Information</Link>
+                            <Link to={`/${currency}/returns`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Returns & Exchanges</Link>
+                            <Link to={`/${currency}/faqs`} className="text-gray-500 hover:text-zinc-900 nav-a transition">FAQs</Link>
                         </div>
                     </div>
 
