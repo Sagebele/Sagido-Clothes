@@ -1,8 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import FooterHome from "../components/HomePage/FooterHome";
 import "../styles/Form.css";
 
 export default function ContactUs() {
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     const [formData, setFormData] = useState({
         name: "",
         email: "",

@@ -1,6 +1,7 @@
 import "../../styles/AboutUs.css";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../../utils/currencyHelper";
+import { useScrollAnimation } from "../../Hooks/ScrollAnimation";
 
 interface TextImageSectionProps {
     title: string;
@@ -22,10 +23,11 @@ const TextImageSection = ({
     imagePosition = "right",
 }: TextImageSectionProps) => {
     const isImageOnLeft = imagePosition === "left";
+    const { ref, isVisible } = useScrollAnimation();
 
 
     return (
-        <div className="max-w-7xl mx-auto px-6 md:px-10 bg-inherit">
+        <div ref={ref} className={`max-w-7xl mx-auto px-6 md:px-10 bg-inherit scroll-fade-in ${isVisible ? "visible" : ""}`}>
             <div
                 className={`flex flex-col ${
                     isImageOnLeft ? "lg:flex-row-reverse" : "lg:flex-row"

@@ -89,7 +89,8 @@ const FooterHome = () => {
                                 />
                                 <button 
                                     type="submit"
-                                    className="px-4 py-2 text-sm font-semibold text-white bg-zinc-900 rounded-md hover:bg-zinc-800 transition hover:cursor-pointer"
+                                    className="px-4 py-2 text-sm font-semibold text-white bg-zinc-800  hover:bg-zinc-700 transition hover:cursor-pointer"
+                                    //TODO: Add subscription functionality and Toast notification after completion of logic system
                                 >
                                     Subscribe
                                 </button>

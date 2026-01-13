@@ -12,6 +12,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ContactUs from "./pages/ContactUs";
 
 import Faq from "./pages/FAQsPage";
+import Shipping from "./pages/Shipping";
 
 const CurrencyGate = () => {
   const saved = localStorage.getItem("currency"); 
@@ -44,6 +45,7 @@ const App = () => {
                 <Route path="privacypolicy" element={<PrivacyPolicy />} />
                 <Route path="contactus" element={<ContactUs />} />
                 <Route path="faqs" element={<Faq />} />
+                <Route path="shipping" element={<Shipping />} />
 
                 <Route path="*" element={<Navigate to="." replace />} />
               </Route>

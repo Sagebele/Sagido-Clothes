@@ -7,6 +7,7 @@ export default function PrivacyPolicy() {
 
   useEffect(() => {
     setNavbar({ variant: "transparent" });
+    window.scrollTo(0, 0);
     return () => resetNavbar();
   }, [setNavbar, resetNavbar]);
 

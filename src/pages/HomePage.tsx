@@ -13,6 +13,7 @@ const HomePage = () => {
 
     useEffect(() => {
         setNavbar({ variant: "transparent", tone: "light" });
+        window.scrollTo(0, 0);
         return () => resetNavbar();
     }, [setNavbar, resetNavbar]);
 

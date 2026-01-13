@@ -1,5 +1,36 @@
 @import "tailwindcss";
-@import "./styles/Header.css";
+@import "./Header.css";
+@import "./ScrollAnimation.css";
+
+
+
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+}
+
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+input,
+textarea {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #d1d5db;
+  background-color: transparent;
+  transition: border-bottom-color 0.35s ease-out;
+}
+
+input:focus,
+textarea:focus {
+  border-bottom-color: #27272a;
+}
+
+
 
 @layer utilities {
   .font-delius {

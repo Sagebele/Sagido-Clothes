@@ -6,6 +6,7 @@ const WomenPage = () => {
 
     useEffect(() => {
         setNavbar({ variant: "solid", tone: "dark" });
+        window.scrollTo(0, 0);
     }, [setNavbar]);
 
     return (
