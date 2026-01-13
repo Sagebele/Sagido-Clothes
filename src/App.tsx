@@ -11,6 +11,8 @@ import { ToastNotifications } from "./components/ToastNotifications";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ContactUs from "./pages/ContactUs";
 
+import Faq from "./pages/FAQsPage";
+
 const CurrencyGate = () => {
   const saved = localStorage.getItem("currency"); 
   const currency = saved === "usd" ? "usd" : "eur";
@@ -41,6 +43,7 @@ const App = () => {
                 <Route path="aboutus" element={<AboutUsPage />} />
                 <Route path="privacypolicy" element={<PrivacyPolicy />} />
                 <Route path="contactus" element={<ContactUs />} />
+                <Route path="faqs" element={<Faq />} />
 
                 <Route path="*" element={<Navigate to="." replace />} />
               </Route>
