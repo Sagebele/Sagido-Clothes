@@ -156,6 +156,7 @@ const Navbar = () => {
                 <div className="mb-1">
                   <button
                     onClick={() => {
+                      localStorage.setItem("currency", "usd");
                       setCurrency("usd");
                       dds.currency.closeNow();
                     }}
@@ -167,6 +168,7 @@ const Navbar = () => {
                 <div>
                   <button
                     onClick={() => {
+                      localStorage.setItem("currency", "eur");
                       setCurrency("eur");
                       dds.currency.closeNow();
                     }}
@@ -406,13 +408,19 @@ const Navbar = () => {
             <div className={`${isMobileCurrencyOpen ? "flex" : "hidden"} flex-row rounded-sm p-2`}>
               <button
                 className="px-4 py-2 text-left hover:bg-white/10 rounded cursor-pointer"
-                onClick={() => setCurrency("usd")}
+                onClick={() => {
+                  localStorage.setItem("currency", "usd");
+                  setCurrency("usd");
+                }}
               >
                 USD $
               </button>
               <button
                 className="px-4 py-2 text-left hover:bg-white/10 rounded cursor-pointer"
-                onClick={() => setCurrency("eur")}
+                onClick={() => {
+                  localStorage.setItem("currency", "eur");
+                  setCurrency("eur");
+                }}
               >
                 EUR €
               </button>

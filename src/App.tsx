@@ -13,6 +13,8 @@ import ContactUs from "./pages/ContactUs";
 
 import Faq from "./pages/FAQsPage";
 import Shipping from "./pages/Shipping";
+import ReturnsPage from "./pages/ReturnsPage";
+import PageNotFound from "./pages/PageNotFound";
 
 const CurrencyGate = () => {
   const saved = localStorage.getItem("currency"); 
@@ -20,11 +22,10 @@ const CurrencyGate = () => {
   return <Navigate to={`/${currency}`} replace />;
 };
 
-const CurrencyFallback = () => {
+const RootFallback = () => {
   const saved = localStorage.getItem("currency");
   const currency = saved === "usd" ? "usd" : "eur";
-  const path = window.location.pathname;
-  return <Navigate to={`/${currency}${path}`} replace />;
+  return <Navigate to={`/${currency}/notfound`} replace />;
 };
 
 const App = () => {
@@ -46,11 +47,13 @@ const App = () => {
                 <Route path="contactus" element={<ContactUs />} />
                 <Route path="faqs" element={<Faq />} />
                 <Route path="shipping" element={<Shipping />} />
+                <Route path="returns" element={<ReturnsPage />} />
+                <Route path="notfound" element={<PageNotFound />} />
 
-                <Route path="*" element={<Navigate to="." replace />} />
+                <Route path="*" element={<PageNotFound />} />
               </Route>
 
-            <Route path="*" element={<CurrencyFallback />} />
+              <Route path="*" element={<RootFallback />} />
             </Routes>
           </BrowserRouter>
         </ToastProvider>
