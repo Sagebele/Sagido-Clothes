@@ -1,11 +1,9 @@
 import { faFacebook, faInstagram, faPinterest, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { getCurrencyPath } from "../../utils/currencyHelper";
 
 const FooterHome = () => {
-
-    const savedCurrency = localStorage.getItem("currency"); 
-    const currency = savedCurrency === "usd" ? "usd" : "eur";
     return (
         <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
@@ -15,8 +13,8 @@ const FooterHome = () => {
                             <h2 className="text-lg font-bold text-zinc-900 border-b border-zinc-900 pb-2">About</h2>
                         </div>
                         <div className="flex flex-col gap-2 items-center justify-center">
-                            <Link to={`/${currency}/aboutus`} className="text-gray-500 hover:text-zinc-900 nav-a transition">About Us</Link>
-                            <Link to={`/${currency}/privacypolicy`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Terms & Policy</Link>
+                            <Link to={getCurrencyPath("/aboutus")} className="text-gray-500 hover:text-zinc-900 nav-a transition">About Us</Link>
+                            <Link to={getCurrencyPath("/privacypolicy")} className="text-gray-500 hover:text-zinc-900 nav-a transition">Terms & Policy</Link>
                         </div>
                     </div>
                     <div className="footer-help flex flex-col">
@@ -24,10 +22,10 @@ const FooterHome = () => {
                             <h2 className="text-lg font-bold text-zinc-900 border-b border-zinc-900 pb-2">Shop</h2>
                         </div>
                         <div className="flex flex-col gap-2 items-center justify-center">
-                            <Link to={`/${currency}/contactus`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Contact Us</Link>
-                            <Link to={`/${currency}/shipping`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Shipping Information</Link>
-                            <Link to={`/${currency}/returns`} className="text-gray-500 hover:text-zinc-900 nav-a transition">Returns & Exchanges</Link>
-                            <Link to={`/${currency}/faqs`} className="text-gray-500 hover:text-zinc-900 nav-a transition">FAQs</Link>
+                            <Link to={getCurrencyPath("/contactus")} className="text-gray-500 hover:text-zinc-900 nav-a transition">Contact Us</Link>
+                            <Link to={getCurrencyPath("/shipping")} className="text-gray-500 hover:text-zinc-900 nav-a transition">Shipping Information</Link>
+                            <Link to={getCurrencyPath("/returns")} className="text-gray-500 hover:text-zinc-900 nav-a transition">Returns & Exchanges</Link>
+                            <Link to={getCurrencyPath("/faqs")} className="text-gray-500 hover:text-zinc-900 nav-a transition">FAQs</Link>
                         </div>
                     </div>
 
@@ -88,7 +86,7 @@ const FooterHome = () => {
                             <span className="hidden md:inline-block text-zinc-900 pointer-events-none">|</span>
                             <span className="block md:hidden w-50 h-px bg-zinc-900 my-2 pointer-events-none" aria-hidden="true" />
 
-                            <Link to={`/${currency}/privacypolicy`} className="text-gray-500 hover:text-gray-900 nav-a">Privacy Policy</Link>
+                            <Link to={getCurrencyPath("/privacypolicy")} className="text-gray-500 hover:text-gray-900 nav-a">Privacy Policy</Link>
                     </div>
                 </div>
             </footer>

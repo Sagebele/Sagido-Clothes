@@ -1,27 +1,23 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import CategoryCard from "../components/HomePage/CategoryCards";
 import TextImageSection from "../components/HomePage/AboutUs";
 import aboutUsImg from "../assets/images/HomePage/aboutUs.jpg";
 import { useNavbar } from "../context/useNavbar";
 import FooterHome from "../components/HomePage/FooterHome";
-import { ThemeContext } from "../context/ThemeContext";
 import Information from "../components/HomePage/Information";
 import PictureCarousel from "../components/HomePage/PictureCarousel";
 import HeroImage from "../components/HomePage/HeroImage";
 
 const HomePage = () => {
     const { setNavbar, resetNavbar } = useNavbar();
-    const { theme } = useContext(ThemeContext)!;
 
     useEffect(() => {
         setNavbar({ variant: "transparent", tone: "light" });
         return () => resetNavbar();
     }, [setNavbar, resetNavbar]);
 
-    const mainBg = theme === "light" ? "bg-white" : "bg-white/90";
-
     return (
-    <div className={mainBg}>
+    <div className="bg-white">
         <HeroImage 
         title="New Arrivals Spring 2026"
         subtitle="Beautiful clothes, and a sleek style with Sagido Line."

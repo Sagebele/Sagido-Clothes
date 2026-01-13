@@ -15,6 +15,7 @@ import { useNavbarDropdowns } from "../../Hooks/Navbar/NavbarDropdowns";
 import { useCurrencyRouting } from "../../Hooks/Navbar/CurrencyRouting";
 import { menDropdownConfig, womenDropdownConfig, juniorDropdownConfig } from "./DropsConfig";
 import { MainDropdown } from "./mainDropdown";
+import { getCurrencyPath } from "../../utils/currencyHelper";
 
 const Navbar = () => {
   const { config } = useNavbar();
@@ -74,7 +75,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         {/* Left (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link to={`/${currency}/explore`} className="flex items-center gap-2 nav-a">
+          <Link to={getCurrencyPath("/explore")} className="flex items-center gap-2 nav-a">
             Explore
           </Link>
 
@@ -86,7 +87,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.women.closeLater}
           >
-            <Link to={`/${currency}/women`} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/women")} className="flex items-center gap-2 nav-a">
               Women
             </Link>
           </div>
@@ -99,7 +100,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.men.closeLater}
           >
-            <Link to={`/${currency}/men`} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/men")} className="flex items-center gap-2 nav-a">
               Men
             </Link>
           </div>
@@ -112,7 +113,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.junior.closeLater}
           >
-            <Link to={`/${currency}/junior`} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/junior")} className="flex items-center gap-2 nav-a">
               Junior
             </Link>
           </div>
@@ -129,7 +130,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <div className="text-2xl font-bold z-10">
-          <Link to={`/${currency}`} className="flex items-center">
+          <Link to={getCurrencyPath("/")} className="flex items-center">
             Sagido
           </Link>
         </div>
@@ -190,16 +191,16 @@ const Navbar = () => {
             </button>
           </div>
 
-          <Link to={`/${currency}/account`} className="flex items-center gap-2 nav-a">
+          <Link to={getCurrencyPath("/account")} className="flex items-center gap-2 nav-a">
             <FontAwesomeIcon icon={faUser} />
           </Link>
 
-          <Link to={`/${currency}/favorites`} className="flex items-center gap-2 nav-a">
+          <Link to={getCurrencyPath("/favorites")} className="flex items-center gap-2 nav-a">
             <FontAwesomeIcon icon={faHeart} />
           </Link>
 
           <Link
-            to={`/${currency}/cart`}
+            to={getCurrencyPath("/cart")}
             className="flex items-center gap-2 nav-a"
             onMouseEnter={dds.cart.openNow}
             onMouseLeave={dds.cart.closeLater}
@@ -379,16 +380,16 @@ const Navbar = () => {
       {/*  Mobile Menu  */}
       <div className={`${isHamOpen ? "block" : "hidden"} md:hidden mt-3 text-center`}>
         <div className="rounded-2xl bg-black/40 backdrop-blur-md p-4 flex flex-col gap-3 text-stone-300">
-          <Link to={`/${currency}/explore`} onClick={() => setIsHamOpen(false)}>
+          <Link to={getCurrencyPath("/explore")} onClick={() => setIsHamOpen(false)}>
             Explore
           </Link>
-          <Link to={`/${currency}/women`} onClick={() => setIsHamOpen(false)}>
+          <Link to={getCurrencyPath("/women")} onClick={() => setIsHamOpen(false)}>
             Women
           </Link>
-          <Link to={`/${currency}/men`} onClick={() => setIsHamOpen(false)}>
+          <Link to={getCurrencyPath("/men")} onClick={() => setIsHamOpen(false)}>
             Men
           </Link>
-          <Link to={`/${currency}/junior`} onClick={() => setIsHamOpen(false)}>
+          <Link to={getCurrencyPath("/junior")} onClick={() => setIsHamOpen(false)}>
             Junior
           </Link>
 

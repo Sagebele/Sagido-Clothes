@@ -1,8 +1,42 @@
-.contactName {
-    border: none;
-    outline: none;
+.contactNameContainer,
+.contactEmailContainer,
+.contactMessageContainer {
+    position: relative;
 }
 
 .contactLabel {
     font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.contactNameContainer:focus-within .contactLabel,
+.contactEmailContainer:focus-within .contactLabel,
+.contactMessageContainer:focus-within .contactLabel {
+    color: #d1d5db;
+    transform: translateY(-2px);
+}
+
+.contactName,
+.contactEmail,
+.contactMessage {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #d1d5db;
+    transition: border-bottom-color 0.3s ease;
+    background-color: transparent;
+}
+
+.contactName:focus,
+.contactEmail:focus,
+.contactMessage:focus {
+    border-bottom-color: #60a5fa;
+}
+
+.contactMessage {
+    resize: vertical;
+    min-height: 120px;
+    padding: 12px 8px !important;
+    font-family: inherit;
+    font-size: 1rem;
 }

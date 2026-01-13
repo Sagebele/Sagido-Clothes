@@ -1,4 +1,6 @@
 import "../../styles/AboutUs.css";
+import { Link } from "react-router-dom";
+import { getCurrencyPath } from "../../utils/currencyHelper";
 
 interface TextImageSectionProps {
     title: string;
@@ -21,6 +23,7 @@ const TextImageSection = ({
 }: TextImageSectionProps) => {
     const isImageOnLeft = imagePosition === "left";
 
+
     return (
         <div className="max-w-7xl mx-auto px-6 md:px-10 bg-inherit">
             <div
@@ -38,7 +41,13 @@ const TextImageSection = ({
                     <p className="text-zinc-800 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                         {text}
                     </p>
-                    {span && <span className="learn-more">{span}</span>}
+                    {span &&
+                        <Link to={getCurrencyPath("/aboutus")} 
+                        className="learn-more hover:cursor-pointer"
+                        >
+                            {span}
+                        </Link>
+                    }
                 </div>
                 <div className="w-full lg:w-1/2">
                     <img
