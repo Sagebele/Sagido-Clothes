@@ -3,7 +3,7 @@ import { type NavbarConfig, NavbarContext    } from "./NavbarContext";
 
 const DEFAULT_NAVBAR: NavbarConfig = {
     variant: "solid",
-    tone: "dark",
+
 };
 
 export const NavbarProvider = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +12,7 @@ export const NavbarProvider = ({ children }: { children: React.ReactNode }) => {
     const setNavbar = useCallback((partial: Partial<NavbarConfig>) => {
         setConfig((prev) => {
             const next = { ...prev, ...partial };
-            return (next.variant === prev.variant && next.tone === prev.tone) ? prev : next;
+            return (next.variant === prev.variant) ? prev : next;
         });
     }, []);
 

@@ -12,6 +12,8 @@ export interface CartContextType {
     count: number;
     addItem: (item: CartItem) => void;
     removeItem: (id: string) => void;
+    cartIconRef: React.RefObject<HTMLDivElement | null>;
+    favoritesIconRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);

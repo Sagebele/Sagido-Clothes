@@ -12,7 +12,7 @@ const HomePage = () => {
     const { setNavbar, resetNavbar } = useNavbar();
 
     useEffect(() => {
-        setNavbar({ variant: "transparent", tone: "light" });
+        setNavbar({ variant: "transparent" });
         window.scrollTo(0, 0);
         return () => resetNavbar();
     }, [setNavbar, resetNavbar]);

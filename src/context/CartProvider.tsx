@@ -1,4 +1,4 @@
-import { useState, useCallback, type ReactNode } from "react";
+import { useState, useCallback, useRef, type ReactNode } from "react";
 import { CartContext, type CartItem } from "./CartContext";
 
 interface CartProviderProps {
@@ -7,6 +7,8 @@ interface CartProviderProps {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
     const [items, setItems] = useState<CartItem[]>([]);
+    const cartIconRef = useRef<HTMLDivElement>(null);
+    const favoritesIconRef = useRef<HTMLDivElement>(null);
 
     const count = items.reduce((total, item) => total + item.quantity, 0);
 
@@ -27,7 +29,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }, []);
 
     return (
-        <CartContext.Provider value={{ items, count, addItem, removeItem }}>
+        <CartContext.Provider value={{ items, count, addItem, removeItem, cartIconRef, favoritesIconRef }}>
             {children}
         </CartContext.Provider>
     );

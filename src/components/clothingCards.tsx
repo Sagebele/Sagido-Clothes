@@ -2,15 +2,13 @@ import { useState } from "react";
 import testImageFront from "../assets/images/women-clothing/testImageFront.jpg";
 import testImageBack from "../assets/images/women-clothing/testimageBack.jpg";
 import { useCart } from "../context/useCart";
-import { useCartIcon } from "../context/useCartIcon";
 import { AnimatedBall } from "./AnimatedBall";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ClothingCards() {
-    const { addItem } = useCart();
-    const { cartIconRef, favoritesIconRef } = useCartIcon();
+    const { addItem, cartIconRef, favoritesIconRef } = useCart();
     const [animatingBall, setAnimatingBall] = useState<{
         startX: number;
         startY: number;

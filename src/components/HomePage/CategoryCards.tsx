@@ -7,16 +7,16 @@ import { useScrollAnimation } from "../../Hooks/ScrollAnimation"
 
 const CategoryCard = () => {
     return (
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-14  ">
-        <h3 className="text-zinc-900 text-2xl font-bold mb-8 text-center">
-          Explore Collections for All Ages and Styles
-        </h3>
-        <div className="grid gap-6 sm:grid-cols-2 lg:flex lg:gap-6 lg:items-stretch">
-            {cards.map((card, index) => (
-              <CardItem key={card.id} card={card} index={index} />
-            ))}
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-14  ">
+            <h3 className="text-zinc-900 text-2xl font-bold mb-8 text-center">
+            Explore Collections for All Ages and Styles
+            </h3>
+            <div className="grid gap-6 sm:grid-cols-2 lg:flex lg:gap-6 lg:items-stretch">
+                {cards.map((card, index) => (
+                <CardItem key={card.id} card={card} index={index} />
+                ))}
+            </div>
         </div>
-    </div>
     );
 };
 
@@ -25,11 +25,11 @@ const CardItem = ({ card, index }: { card: CardItemProp; index: number }) => {
     
     let animationClass = "";
     if (index === 0) {
-        animationClass = "card-slide-left-to-right";
+        animationClass = "left-to-right-anim";
     } else if (index === 1) {
-        animationClass = "card-slide-bottom-to-top";
+        animationClass = "bottom-to-top-anim";
     } else if (index === 2) {
-        animationClass = "card-slide-right-to-left";
+        animationClass = "right-to-left-anim";
     }
 
     return (
@@ -66,7 +66,7 @@ interface CardItemProp {
     imageUrl: string;
     buttonText: string;
     };
-      
+    
 const cards: CardItemProp[] = [
     {
         id: "womenCard",

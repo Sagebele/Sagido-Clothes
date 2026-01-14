@@ -11,7 +11,7 @@ const AboutUsPage = () => {
     const { setNavbar } = useNavbar();
 
     useEffect(() => {
-        setNavbar({ variant: "solid", tone: "dark" });
+        setNavbar({ variant: "solid" });
         window.scrollTo(0, 0);
     }, [setNavbar]);    
 

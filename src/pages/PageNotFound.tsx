@@ -1,17 +1,9 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useNavbar } from "../context/useNavbar";
 import FooterHome from "../components/Footer";
 
 export default function PageNotFound() {
-    const { setNavbar, resetNavbar } = useNavbar();
     const { currency = "eur" } = useParams<{ currency?: string }>();
 
-    useEffect(() => {
-        setNavbar({ variant: "solid", tone: "light" });
-        window.scrollTo(0, 0);
-        return () => resetNavbar();
-    }, [setNavbar, resetNavbar]);
 
     return (
         <>

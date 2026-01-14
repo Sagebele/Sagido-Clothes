@@ -14,15 +14,13 @@ import { useNavbar } from "../../context/useNavbar";
 import { useNavbarDropdowns } from "../../Hooks/Navbar/NavbarDropdowns";
 import { useCurrencyRouting } from "../../Hooks/Navbar/CurrencyRouting";
 import { useCart } from "../../context/useCart";
-import { useCartIcon } from "../../context/useCartIcon";
 import { menDropdownConfig, womenDropdownConfig, juniorDropdownConfig } from "./DropsConfig";
 import { MainDropdown } from "./MainDropdown";
 import { getCurrencyPath } from "../../utils/currencyHelper";
 
 const Navbar = () => {
-  const { cartIconRef, favoritesIconRef } = useCartIcon();
+  const { cartIconRef, favoritesIconRef, count } = useCart();
   const { config } = useNavbar();
-  const { count } = useCart();
   const navigate = useNavigate();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,9 +53,7 @@ const Navbar = () => {
     "fixed top-0 left-0 right-0 z-50 px-3 py-4 transition-all duration-300";
   const navBg = isSolid
     ? "bg-black/30 backdrop-blur-md border-b border-white/10"
-    : "bg-transparent border-b border-transparent";
-
-  const textTone = isSolid ? "text-white" : "text-zinc-900";
+    : "bg-black/10 border-b border-transparent";
 
   const textFont = "font-delius";
   const DDlinks = "text-white nav-a font-sans cursor-pointer";
@@ -75,7 +71,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${navBase} ${navBg} ${textTone} ${textFont}`}>
+    <nav className={`${navBase} ${navBg} text-white ${textFont}`}>
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         {/* Left (desktop) */}
         <div className="hidden md:flex items-center space-x-8">

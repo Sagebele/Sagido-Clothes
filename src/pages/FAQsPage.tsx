@@ -67,7 +67,7 @@ const FAQsPage = () => {
     const { setNavbar, resetNavbar } = useNavbar();
 
     useEffect(() => {
-        setNavbar({ variant: "solid", tone: "light" });
+        setNavbar({ variant: "solid" });
         window.scrollTo(0, 0);
         return () => resetNavbar();
     }, [setNavbar, resetNavbar]);
