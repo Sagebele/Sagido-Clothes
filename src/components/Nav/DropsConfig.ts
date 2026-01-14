@@ -1,33 +1,35 @@
-import type { MainDropdownConfig } from "./mainDropdown";
+import type { MainDropdownConfig } from "./MainDropdown";
 
 export const juniorDropdownConfig = (currency: string): MainDropdownConfig => ({
     sideLabel: "Junior",
     columns: [
         {
-        title: "New Collection",
-        titleTo: `/${currency}/junior/new-collection`,
+        title: "Collections",
+        titleTo: `/${currency}/junior/collections`,
         links: [
-            { label: "Summer Vibes", to: `/${currency}/junior/summer-vibes` },
-            { label: "Playful Prints", to: `/${currency}/junior/playful-prints` },
-            { label: "School Essentials", to: `/${currency}/junior/school-essentials` },
+            { label: "Summer Vibes", to: `/${currency}/junior/collections/summer-vibes` },
+            { label: "Playful Prints", to: `/${currency}/junior/collections/playful-prints` },
+            { label: "School Essentials", to: `/${currency}/junior/collections/school-essentials` },
         ],
         },
         {
         title: "Clothing",
+        titleTo: `/${currency}/junior/clothing`,
         links: [
-            { label: "T-Shirts", to: `/${currency}/junior/t-shirts` },
-            { label: "Hoodies", to: `/${currency}/junior/hoodies` },
-            { label: "Jeans", to: `/${currency}/junior/jeans` },
-            { label: "Dresses & Skirts", to: `/${currency}/junior/dresses` },
+            { label: "T-Shirts", to: `/${currency}/junior/clothing/t-shirts` },
+            { label: "Hoodies", to: `/${currency}/junior/clothing/hoodies` },
+            { label: "Jeans", to: `/${currency}/junior/clothing/jeans` },
+            { label: "Dresses & Skirts", to: `/${currency}/junior/clothing/dresses` },
         ],
         },
         {
         title: "Accessories",
+        titleTo: `/${currency}/junior/accessories`,
         links: [
-            { label: "Backpacks", to: `/${currency}/junior/backpacks` },
-            { label: "Shoes & Sneakers", to: `/${currency}/junior/shoes` },
-            { label: "Hats & Caps", to: `/${currency}/junior/hats` },
-            { label: "Fun Jewelry", to: `/${currency}/junior/jewelry` },
+            { label: "Backpacks", to: `/${currency}/junior/accessories/backpacks` },
+            { label: "Shoes & Sneakers", to: `/${currency}/junior/accessories/shoes` },
+            { label: "Hats & Caps", to: `/${currency}/junior/accessories/hats` },
+            { label: "Fun Jewelry", to: `/${currency}/junior/accessories/jewelry` },
         ],
         },
     ],
@@ -42,30 +44,32 @@ export const menDropdownConfig = (currency: string): MainDropdownConfig => ({
     sideLabel: "Men",
     columns: [
         {
-        title: "New Collection",
-        titleTo: `/${currency}/men/new-collection`,
+        title: "Collections",
+        titleTo: `/${currency}/men/collections`,
         links: [
-            { label: "Summer Essentials", to: `/${currency}/men/summer-essentials` },
-            { label: "Street Style", to: `/${currency}/men/street-style` },
-            { label: "Minimal Wear", to: `/${currency}/men/minimal-wear` },
+            { label: "Summer Essentials", to: `/${currency}/men/collections/summer-essentials` },
+            { label: "Street Style", to: `/${currency}/men/collections/street-style` },
+            { label: "Minimal Wear", to: `/${currency}/men/collections/minimal-wear` },
         ],
         },
         {
         title: "Clothing",
+        titleTo: `/${currency}/men/clothing`,
         links: [
-            { label: "T-Shirts", to: `/${currency}/men/t-shirts` },
-            { label: "Hoodies & Sweaters", to: `/${currency}/men/hoodies` },
-            { label: "Jeans", to: `/${currency}/men/jeans` },
-            { label: "Jackets", to: `/${currency}/men/jackets` },
+            { label: "T-Shirts", to: `/${currency}/men/clothing/t-shirts` },
+            { label: "Hoodies & Sweaters", to: `/${currency}/men/clothing/hoodies` },
+            { label: "Jeans", to: `/${currency}/men/clothing/jeans` },
+            { label: "Jackets", to: `/${currency}/men/clothing/jackets` },
         ],
         },
         {
         title: "Accessories",
+        titleTo: `/${currency}/men/accessories`,
         links: [
-            { label: "Bags", to: `/${currency}/men/bags` },
-            { label: "Shoes & Sneakers", to: `/${currency}/men/shoes` },
-            { label: "Caps & Hats", to: `/${currency}/men/hats` },
-            { label: "Jewelry", to: `/${currency}/men/jewelry` },
+            { label: "Bags", to: `/${currency}/men/accessories/bags` },
+            { label: "Shoes & Sneakers", to: `/${currency}/men/accessories/shoes` },
+            { label: "Caps & Hats", to: `/${currency}/men/accessories/hats` },
+            { label: "Jewelry", to: `/${currency}/men/accessories/jewelry` },
         ],
         },
     ],
@@ -81,30 +85,32 @@ export const womenDropdownConfig = (currency: string): MainDropdownConfig => ({
     sideLabel: "Women",
     columns: [
         {
-        title: "New Collection",
-        titleTo: `/${currency}/women/new-collection`,
+        title: "Collections",
+        titleTo: `/${currency}/women/collections`,
         links: [
-            { label: "Summer Drop", to: `/${currency}/women/summer-drop` },
-            { label: "Elegant Styles", to: `/${currency}/women/elegant-styles` },
-            { label: "Everyday Comfort", to: `/${currency}/women/everyday-comfort` },
+            { label: "Summer Drop", to: `/${currency}/women/collections/summer-drop` },
+            { label: "Elegant Styles", to: `/${currency}/women/collections/elegant-styles` },
+            { label: "Everyday Comfort", to: `/${currency}/women/collections/everyday-comfort` },
         ],
         },
         {
         title: "Clothing",
+        titleTo: `/${currency}/women/clothing`,
         links: [
-            { label: "Tops", to: `/${currency}/women/tops` },
-            { label: "Dresses", to: `/${currency}/women/dresses` },
-            { label: "Jeans & Pants", to: `/${currency}/women/jeans` },
-            { label: "Outerwear", to: `/${currency}/women/outerwear` },
+            { label: "Tops", to: `/${currency}/women/clothing/tops` },
+            { label: "Dresses", to: `/${currency}/women/clothing/dresses` },
+            { label: "Jeans & Pants", to: `/${currency}/women/clothing/jeans` },
+            { label: "Outerwear", to: `/${currency}/women/clothing/outerwear` },
         ],
         },
         {
         title: "Accessories",
+        titleTo: `/${currency}/women/accessories`,
         links: [
-            { label: "Bags", to: `/${currency}/women/bags` },
-            { label: "Shoes & Heels", to: `/${currency}/women/shoes` },
-            { label: "Jewelry", to: `/${currency}/women/jewelry` },
-            { label: "Scarves", to: `/${currency}/women/scarves` },
+            { label: "Bags", to: `/${currency}/women/accessories/bags` },
+            { label: "Shoes & Heels", to: `/${currency}/women/accessories/shoes` },
+            { label: "Jewelry", to: `/${currency}/women/accessories/jewelry` },
+            { label: "Scarves", to: `/${currency}/women/accessories/scarves` },
         ],
         },
     ],

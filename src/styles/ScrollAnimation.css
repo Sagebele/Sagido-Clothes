@@ -43,9 +43,49 @@
     opacity: 0;
     transform: translateX(40px);
     transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+    -webkit-transform: translateX(40px);
+    -moz-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    -o-transform: translateX(40px);
 }
 
 .card-slide-right-to-left.visible {
     opacity: 1;
     transform: translateX(0);
+}
+.truck-animation {
+    opacity: 0;
+    transform: translateX(-100px) translateY(-50px);
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+}
+
+.truck-animation.visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+
+.undo-animation {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+    -webkit-transform: translateY(-100px);
+    -moz-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    -o-transform: translateY(-100px);
+}
+
+.undo-animation.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.headset-animation {
+    opacity: 0;
+    transform: translateX(100px) translateY(-50px);
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+}
+
+.headset-animation.visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
 }
