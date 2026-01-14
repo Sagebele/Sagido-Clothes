@@ -18,28 +18,6 @@ export default function ClothingCards() {
         endY: number;
     } | null>(null);
 
-    const animateToIcon = (iconRef: React.RefObject<HTMLDivElement>, callback: () => void) => {
-        const event = window.event as MouseEvent;
-        const elementFromPoint = document.elementFromPoint(event.clientX, event.clientY);
-        
-        if (!elementFromPoint) return;
-        
-        const buttonRect = (elementFromPoint as HTMLElement).getBoundingClientRect();
-        const icon = iconRef.current;
-
-        if (icon) {
-            const iconRect = icon.getBoundingClientRect();
-            
-            const startX = buttonRect.left + buttonRect.width / 2;
-            const startY = buttonRect.top + buttonRect.height / 2;
-            const endX = iconRect.left + iconRect.width / 2;
-            const endY = iconRect.top + iconRect.height / 2;
-
-            setAnimatingBall({ startX, startY, endX, endY });
-            callback();
-        }
-    };
-
     const handleAddCart = (e: React.MouseEvent<SVGSVGElement>) => {
         e.preventDefault();
         const target = e.currentTarget;
