@@ -6,8 +6,8 @@ import MenPage from "./pages/MenPage";
 import JuniorPage from "./pages/JuniorPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import { NavbarProvider } from "./context/NavbarProvider";
-import { ToastProvider } from "./context/ToastProvider";
-import { ToastNotifications } from "./components/ToastNotifications";
+import { CartProvider } from "./context/CartProvider";
+import { CartIconProvider } from "./context/CartIconContext";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ContactUs from "./pages/ContactUs";
 
@@ -31,9 +31,9 @@ const RootFallback = () => {
 const App = () => {
   return (
     <NavbarProvider>
-      <ToastProvider>
+      <CartProvider>
+        <CartIconProvider>
           <BrowserRouter>
-            <ToastNotifications />
             <Routes>
               <Route path="/" element={<CurrencyGate />} />
 
@@ -56,8 +56,9 @@ const App = () => {
               <Route path="*" element={<RootFallback />} />
             </Routes>
           </BrowserRouter>
-        </ToastProvider>
-      </NavbarProvider>
+        </CartIconProvider>
+      </CartProvider>
+    </NavbarProvider>
   );
 };
 

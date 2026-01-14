@@ -13,12 +13,16 @@ import {
 import { useNavbar } from "../../context/useNavbar";
 import { useNavbarDropdowns } from "../../Hooks/Navbar/NavbarDropdowns";
 import { useCurrencyRouting } from "../../Hooks/Navbar/CurrencyRouting";
+import { useCart } from "../../context/useCart";
+import { useCartIcon } from "../../context/useCartIcon";
 import { menDropdownConfig, womenDropdownConfig, juniorDropdownConfig } from "./DropsConfig";
-import { MainDropdown } from "./mainDropdown";
+import { MainDropdown } from "./MainDropdown";
 import { getCurrencyPath } from "../../utils/currencyHelper";
 
 const Navbar = () => {
+  const { cartIconRef, favoritesIconRef } = useCartIcon();
   const { config } = useNavbar();
+  const { count } = useCart();
   const navigate = useNavigate();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -75,7 +79,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         {/* Left (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link to={getCurrencyPath("/explore")} className="flex items-center gap-2 nav-a">
+          <Link to={getCurrencyPath("/explore")} className="flex items-center gap-2 nav-a" onClick={dds.closeAll}>
             Explore
           </Link>
 
@@ -87,7 +91,8 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.women.closeLater}
           >
-            <Link to={getCurrencyPath("/women")} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/women")} className="flex items-center gap-2 nav-a" 
+            onClick={dds.closeAll}>
               Women
             </Link>
           </div>
@@ -100,7 +105,8 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.men.closeLater}
           >
-            <Link to={getCurrencyPath("/men")} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/men")} className="flex items-center gap-2 nav-a" 
+            onClick={dds.closeAll}>
               Men
             </Link>
           </div>
@@ -113,7 +119,8 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.junior.closeLater}
           >
-            <Link to={getCurrencyPath("/junior")} className="flex items-center gap-2 nav-a">
+            <Link to={getCurrencyPath("/junior")} className="flex items-center gap-2 nav-a" 
+            onClick={dds.closeAll}>
               Junior
             </Link>
           </div>
@@ -197,18 +204,33 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faUser} />
           </Link>
 
-          <Link to={getCurrencyPath("/favorites")} className="flex items-center gap-2 nav-a">
-            <FontAwesomeIcon icon={faHeart} />
-          </Link>
-
-          <Link
-            to={getCurrencyPath("/cart")}
-            className="flex items-center gap-2 nav-a"
-            onMouseEnter={dds.cart.openNow}
-            onMouseLeave={dds.cart.closeLater}
+          <div
+            ref={favoritesIconRef}
+            className="flex items-center"
           >
-            <FontAwesomeIcon icon={faShoppingBasket} />
-          </Link>
+            <Link to={getCurrencyPath("/favorites")} className="flex items-center gap-2 nav-a">
+              <FontAwesomeIcon icon={faHeart} />
+            </Link>
+          </div>
+
+          <div
+            ref={cartIconRef}
+            className="flex items-center"
+          >
+            <Link
+              to={getCurrencyPath("/cart")}
+              className="flex items-center gap-2 nav-a relative"
+              onMouseEnter={dds.cart.openNow}
+              onMouseLeave={dds.cart.closeLater}
+            >
+              <FontAwesomeIcon icon={faShoppingBasket} />
+              {count > 0 && (
+                <span className="absolute -top-2 -right-2 bg-zinc-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ import CategoryCard from "../components/HomePage/CategoryCards";
 import TextImageSection from "../components/HomePage/AboutUs";
 import aboutUsImg from "../assets/images/HomePage/aboutUs.jpg";
 import { useNavbar } from "../context/useNavbar";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 import Information from "../components/HomePage/Information";
 import PictureCarousel from "../components/HomePage/PictureCarousel";
 import HeroImage from "../components/HomePage/HeroImage";

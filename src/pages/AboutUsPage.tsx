@@ -4,7 +4,7 @@ import HeroImage from "../components/HomePage/HeroImage";
 import mainImg from "../assets/images/AboutUsPage/Background.jpg";
 import TextImageSection from "../components/HomePage/AboutUs";
 import aboutUsImg from "../assets/images/HomePage/aboutUs.jpg";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 
 const AboutUsPage = () => {
 

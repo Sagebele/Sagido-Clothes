@@ -1,9 +1,9 @@
 import { faFacebook, faInstagram, faPinterest, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { getCurrencyPath } from "../../utils/currencyHelper";
+import { getCurrencyPath } from "../utils/currencyHelper";
 
-const FooterHome = () => {
+const Footer = () => {
     return (
         <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
@@ -123,4 +123,4 @@ const FooterHome = () => {
     );
 }
 
-export default FooterHome;
+export default Footer;

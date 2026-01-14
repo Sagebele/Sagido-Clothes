@@ -89,3 +89,18 @@
     opacity: 1;
     transform: translateX(0) translateY(0);
 }
+
+.women-background-animation {
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out, transform 1.2s ease-in-out;
+    -webkit-transition: opacity 1.6s ease-in-out, transform 1.2s ease-in-out;
+    -moz-transition: opacity 1.6s ease-in-out, transform 1.2s ease-in-out;
+    -ms-transition: opacity 1.6s ease-in-out, transform 1.2s ease-in-out;
+    -o-transition: opacity 1.6s ease-in-out, transform 1.2s ease-in-out;
+}
+
+.women-background-animation.visible {
+    opacity: 1;
+
+}
+

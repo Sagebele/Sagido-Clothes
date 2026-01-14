@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavbar } from "../context/useNavbar";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";

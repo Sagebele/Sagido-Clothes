@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavbar } from "../context/useNavbar";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 
 export default function PageNotFound() {
     const { setNavbar, resetNavbar } = useNavbar();

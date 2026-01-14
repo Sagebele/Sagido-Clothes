@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 import "../styles/Form.css";
 
 export default function ContactUs() {

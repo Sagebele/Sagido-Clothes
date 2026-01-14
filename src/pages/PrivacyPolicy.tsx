@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import FooterHome from "../components/HomePage/FooterHome";
+import FooterHome from "../components/Footer";
 import { useNavbar } from "../context/useNavbar";
 
 export default function PrivacyPolicy() {

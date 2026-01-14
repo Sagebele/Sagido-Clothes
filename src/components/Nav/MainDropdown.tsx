@@ -64,35 +64,35 @@ export function MainDropdown({
             <div className={`flex-1 grid ${gridCols} gap-4`}>
             {config.columns.map((col) => (
                 <div key={col.title} className="flex flex-col items-start justify-start gap-2">
-                <div className="pb-5 text-2xl">
-                    {col.titleTo ? (
-                    <Link to={col.titleTo} className={linkClassName}>
-                        {col.title}
-                    </Link>
-                    ) : (
-                    <span className={linkClassName}>{col.title}</span>
-                    )}
-                </div>
+                    <div className="pb-5 text-2xl">
+                        {col.titleTo ? (
+                        <Link to={col.titleTo} className={linkClassName} onClick={onMouseLeave}>
+                            {col.title}
+                        </Link>
+                        ) : (
+                        <span className={linkClassName}>{col.title}</span>
+                        )}
+                    </div>
 
-                {col.links.map((l) => (
-                    <Link key={l.to + l.label} to={l.to} className={linkClassName}>
-                    {l.label}
-                    </Link>
-                ))}
+                    {col.links.map((l) => (
+                        <Link key={l.to + l.label} to={l.to} className={linkClassName} onClick={onMouseLeave}>
+                        {l.label}
+                        </Link>
+                    ))}
                 </div>
             ))}
 
             {config.image && (
                 <div className="relative flex items-center justify-center cursor-pointer overflow-hidden">
                 {config.image.to ? (
-                    <Link to={config.image.to} className="block w-full relative group">
+                    <Link to={config.image.to} className="block w-full relative group" onClick={onMouseLeave}>
                     <img
                         src={config.image.src}
                         alt={config.image.alt}
                         className="w-full h-100 object-cover rounded-sm group-hover:brightness-50 transition-all duration-300"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span className="text-white text-lg font-semibold">Explore</span>
+                        <span className="text-white text-lg font-semibold nav-a">Explore</span>
                     </div>
                     </Link>
                 ) : (
