@@ -1,4 +1,3 @@
-// Hooks/useNavbarDropdowns.ts
 import { useCallback } from "react";
 import { useHoverDropdown } from "./HoverDropdown";
 import { useNavbarVariantLock } from "./NavbarVariantLock";

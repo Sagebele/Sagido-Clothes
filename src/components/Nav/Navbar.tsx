@@ -17,6 +17,7 @@ import { useCart } from "../../context/useCart";
 import { menDropdownConfig, womenDropdownConfig, juniorDropdownConfig } from "./DropsConfig";
 import { MainDropdown } from "./MainDropdown";
 import { getCurrencyPath } from "../../utils/currencyHelper";
+import "../../styles/index.css"
 
 const Navbar = () => {
   const { cartIconRef, favoritesIconRef, count } = useCart();
@@ -55,7 +56,7 @@ const Navbar = () => {
     ? "bg-black/30 backdrop-blur-md border-b border-white/10"
     : "bg-black/10 border-b border-transparent";
 
-  const textFont = "font-delius";
+  const textFont = "font-instrument";
   const DDlinks = "text-white nav-a font-sans cursor-pointer";
 
   const submitSearch = (qRaw: string) => {
@@ -75,7 +76,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center md:justify-between py-2 relative">
         {/* Left (desktop) */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link to={getCurrencyPath("/explore")} className="flex items-center gap-2 nav-a" onClick={dds.closeAll}>
+          <Link to={getCurrencyPath("/explore")} className="flex items-center gap-2 nav-a" >
             Explore
           </Link>
 
@@ -87,8 +88,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.women.closeLater}
           >
-            <Link to={getCurrencyPath("/women")} className="flex items-center gap-2 nav-a" 
-            onClick={dds.closeAll}>
+            <Link to={getCurrencyPath("/women")} className="flex items-center gap-2 nav-a" >
               Women
             </Link>
           </div>
@@ -101,8 +101,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.men.closeLater}
           >
-            <Link to={getCurrencyPath("/men")} className="flex items-center gap-2 nav-a" 
-            onClick={dds.closeAll}>
+            <Link to={getCurrencyPath("/men")} className="flex items-center gap-2 nav-a" >
               Men
             </Link>
           </div>
@@ -115,8 +114,7 @@ const Navbar = () => {
             }}
             onMouseLeave={dds.junior.closeLater}
           >
-            <Link to={getCurrencyPath("/junior")} className="flex items-center gap-2 nav-a" 
-            onClick={dds.closeAll}>
+            <Link to={getCurrencyPath("/junior")} className="flex items-center gap-2 nav-a" >
               Junior
             </Link>
           </div>
@@ -132,7 +130,7 @@ const Navbar = () => {
         </button>
 
         {/* Logo */}
-        <div className="text-2xl font-bold z-10">
+        <div className="text-3xl z-10">
           <Link to={getCurrencyPath("/")} className="flex items-center">
             Sagido
           </Link>
@@ -398,7 +396,7 @@ const Navbar = () => {
       )}
 
       {/*  Mobile Menu  */}
-      <div className={`${isHamOpen ? "block" : "hidden"} md:hidden mt-3 text-center`}>
+      <div className={`${isHamOpen ? "block" : "hidden"} md:hidden text-center`}>
         <div className="rounded-2xl bg-black/40 backdrop-blur-md p-4 flex flex-col gap-3 text-stone-300">
           <Link to={getCurrencyPath("/explore")} onClick={() => setIsHamOpen(false)}>
             Explore

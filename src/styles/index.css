@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lacquer+Static&display=swap');
 @import "tailwindcss";
 @import "./Header.css";
 @import "./ScrollAnimation.css";
@@ -35,7 +36,9 @@ textarea:focus {
 @layer utilities {
   .font-delius {
     font-family: "Delius", cursive;
+  
   }
+
 
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */

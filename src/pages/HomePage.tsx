@@ -18,13 +18,13 @@ const HomePage = () => {
     }, [setNavbar, resetNavbar]);
 
     return (
-    <div className="bg-white">
+    <div className="bg-white overflow-hidden">
         <HeroImage 
         title="New Arrivals Spring 2026"
         subtitle="Beautiful clothes, and a sleek style with Sagido Line."
         />
 
-        <section className={`relative z-10 py-32 w-full space-y-20`}>
+        <section className={`relative z-10 py-32 w-full space-y-20 overflow-hidden`}>
             <CategoryCard />
             <TextImageSection
                 title="About Sagido"
