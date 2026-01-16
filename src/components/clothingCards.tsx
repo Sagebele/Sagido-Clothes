@@ -1,13 +1,21 @@
 import { useState } from "react";
-import testImageFront from "../assets/images/women-clothing/testImageFront.jpg";
-import testImageBack from "../assets/images/women-clothing/testimageBack.jpg";
+
 import { useCart } from "../context/useCart";
 import { AnimatedBall } from "./AnimatedBall";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function ClothingCards() {
+interface ClothingItem {
+    id: string;
+    name: string;
+    price: number;
+    imageFront: string;
+    imageBack: string;
+    quantity?: number;
+}
+
+export default function ClothingCards({ id, name, price, imageFront, imageBack, quantity }: ClothingItem) {
     const { addItem, cartIconRef, favoritesIconRef } = useCart();
     const [animatingBall, setAnimatingBall] = useState<{
         startX: number;
@@ -33,10 +41,10 @@ export default function ClothingCards() {
             setAnimatingBall({ startX, startY, endX, endY });
 
             addItem({
-                id: "1",
-                name: "Pink Jacket",
-                price: 79.99,
-                quantity: 1,
+                id: id,
+                name: name,
+                price: price,
+                quantity: quantity || 1,
             });
         }
     };
@@ -56,7 +64,7 @@ export default function ClothingCards() {
             const endY = favRect.top + favRect.height / 2;
 
             setAnimatingBall({ startX, startY, endX, endY });
-            // TODO: Add to favorites logic
+            // Here you would also add the item to favorites context/state
         }
     };
 
@@ -74,21 +82,18 @@ export default function ClothingCards() {
                     endY={animatingBall.endY}
                     onComplete={handleBallComplete}
                 />
-            )}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-                <h2 className="text-2xl font-bold text-zinc-900 mb-10 text-center">
-                    Explore Our Clothing Collection
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            )}  
+            <div className="max-w-8xl px-4 sm:px-6 lg:px-8 -20 mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
                     <div className=" rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                         <div className="relative w-full h-90 overflow-hidden cursor-pointer group">
                             <img
-                                src={testImageFront}
+                                src={imageFront}
                                 alt="Clothing Item"
                                 className="w-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
                             />
                             <img 
-                                src={testImageBack} 
+                                src={imageBack} 
                                 alt="Clothing Item Back" 
                                 className="w-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
                             />
@@ -101,7 +106,7 @@ export default function ClothingCards() {
                                 onClick={handleAddtoFavorites}
                             />
                             <h3 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center text-lg bg-black/30 backdrop-blur-md font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                Pink Jacket
+                                {name} - ${price}
                             </h3>
                         </div>
                         

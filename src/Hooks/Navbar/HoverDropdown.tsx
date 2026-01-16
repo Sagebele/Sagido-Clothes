@@ -24,7 +24,10 @@ export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: Options 
     const openNow = useCallback(() => {
         cancel();
         setOpen((prev) => {
-        if (!prev) onOpen?.();
+        const shouldCallOnOpen = !prev;
+        if (shouldCallOnOpen && onOpen) {
+            Promise.resolve().then(() => onOpen());
+        }
         return true;
         });
     }, [cancel, onOpen]);
@@ -33,7 +36,11 @@ export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: Options 
         cancel();
         timeoutRef.current = window.setTimeout(() => {
         setOpen((prev) => {
-            if (prev) onClose?.();
+            const shouldCallOnClose = prev;
+            if (shouldCallOnClose && onClose) {
+            // Schedule the callback to run after state update
+            Promise.resolve().then(() => onClose());
+            }
             return false;
         });
         }, closeDelay);
@@ -42,7 +49,11 @@ export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: Options 
     const closeNow = useCallback(() => {
         cancel();
         setOpen((prev) => {
-        if (prev) onClose?.();
+        const shouldCallOnClose = prev;
+        if (shouldCallOnClose && onClose) {
+            // Schedule the callback to run after state update
+            Promise.resolve().then(() => onClose());
+        }
         return false;
         });
     }, [cancel, onClose]);

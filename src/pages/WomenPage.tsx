@@ -3,6 +3,8 @@ import { useNavbar } from "../context/useNavbar";
 import Footer from "../components/Footer";
 import womenBackground from "../assets/images/women-clothing/background.jpg";
 import ClothingCards from "../components/clothingCards";
+import testImageFront from "../assets/images/women-clothing/testImageFront.jpg";
+import testImageBack from "../assets/images/women-clothing/testimageBack.jpg";
 
 const WomenPage = () => {
     const { setNavbar } = useNavbar();
@@ -15,7 +17,7 @@ const WomenPage = () => {
     return (
         <>
             <div 
-                className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-center"
+                className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-centerpy-20"
                 style={{
                     backgroundImage: `url("${womenBackground}")`,
                     backgroundAttachment: 'fixed'
@@ -31,10 +33,40 @@ const WomenPage = () => {
                     </p>
                 </div>
             </div>
-            <ClothingCards />
+            <h2 className="m-10 text-zinc-900 font-bold text-center text-3xl">
+                Featured Item
+            </h2>
+            <div className="min-h-screen flex items-start justify-center py-20 px-8">
+                {/* options bar */}
+                <div className="flex flex-col items-center justify-start mb-8 sticky top-24 ">
+                    <h2 className="mx-10 text-zinc-900 font-semibold text-center text-xl mb-5">
+                        Sort By
+                    </h2>
+                    <select className="text-zinc-900 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="newest">Newest Arrivals</option>
+                        <option value="priceLowHigh">Price: Low to High</option>    
+                        <option value="priceHighLow">Price: High to Low</option>
+                        <option value="popularity">Most Popular</option>
+                    </select>
+
+                </div>
+                <div className="flex-1">
+                    <ClothingCards {...testCard} />
+                </div>
+            </div>
+            
             <Footer />
         </>
     );
 };
+
+const testCard = {
+    id: "women1",
+    name: "Elegant Dress",
+    price: 89.99,
+    imageFront: testImageFront,
+    imageBack: testImageBack,
+};
+
 
 export default WomenPage;
