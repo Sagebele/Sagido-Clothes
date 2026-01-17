@@ -1,15 +1,4 @@
 import { createContext } from "react";
-
-export type NavbarVariant = "transparent" | "solid";
-
-export type NavbarConfig = {
-    variant: NavbarVariant;
-};
-
-export type NavbarContextValue = {
-    config: NavbarConfig;
-    setNavbar: (partial: Partial<NavbarConfig>) => void;
-    resetNavbar: () => void;
-};
+import type { NavbarContextValue } from "../types/navbar";
 
 export const NavbarContext = createContext<NavbarContextValue | null>(null);

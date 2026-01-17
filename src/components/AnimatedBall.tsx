@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/AnimatedBall.css";
-
-interface AnimatedBallProps {
-    startX: number;
-    startY: number;
-    endX: number;
-    endY: number;
-    onComplete: () => void;
-}
+import type { AnimatedBallProps } from "../types/components";
 
 export const AnimatedBall = ({ startX, startY, endX, endY, onComplete }: AnimatedBallProps) => {
     const [isAnimating, setIsAnimating] = useState(true);

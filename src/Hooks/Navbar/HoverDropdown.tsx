@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { HoverDropdownOptions } from "../../types/components";
 
-type Options = {
-    closeDelay?: number;
-    onOpen?: () => void;
-    onClose?: () => void;
-};
-
-export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: Options = {}) {
+export function useHoverDropdown({ closeDelay = 150, onOpen, onClose }: HoverDropdownOptions = {}) {
     const [open, setOpen] = useState(false);
     const timeoutRef = useRef<number | null>(null);
 

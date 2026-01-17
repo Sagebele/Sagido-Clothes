@@ -1,9 +1,7 @@
-import { useState, useCallback, useRef, type ReactNode } from "react";
-import { CartContext, type CartItem } from "./CartContext";
-
-interface CartProviderProps {
-    children: ReactNode;
-}
+import { useState, useCallback, useRef } from "react";
+import { CartContext } from "./CartContext";
+import type { CartItem } from "../types/cart";
+import type { CartProviderProps } from "../types/components";
 
 export const CartProvider = ({ children }: CartProviderProps) => {
     const [items, setItems] = useState<CartItem[]>([]);

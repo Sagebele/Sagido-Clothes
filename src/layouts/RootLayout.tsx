@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useParams, Navigate } from "react-router-dom";
 import Navbar from "../components/Nav/Navbar";
+import type { Currency } from "../types/product";
 
-type Currency = "eur" | "usd";
 const VALID_CURRENCIES = ["eur", "usd"] as const;
 
 const RootLayout = () => {

@@ -1,4 +1,4 @@
-import type { MainDropdownConfig } from "./MainDropdown";
+import type { MainDropdownConfig } from "../../types/components";
 
 export const juniorDropdownConfig = (currency: string): MainDropdownConfig => ({
     sideLabel: "Junior",

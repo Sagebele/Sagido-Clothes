@@ -4,6 +4,7 @@ import juniorImg from "../../assets/images/HomePage/juniorCardImage.jpg"
 import { useScrollAnimation } from "../../Hooks/ScrollAnimation"
 import { useNavigate } from "react-router-dom"
 import { getCurrencyPath } from "../../utils/currencyHelper"
+import type { CardItemProp } from "../../types/components"
 
 
 
@@ -61,13 +62,6 @@ const CardItem = ({ card, index }: { card: CardItemProp; index: number }) => {
         </>
     );
 }
-    
-interface CardItemProp {
-    id: string;
-    title: string;
-    imageUrl: string;
-    };
-    
 const cards: CardItemProp[] = [
     {
         id: "womenCard",

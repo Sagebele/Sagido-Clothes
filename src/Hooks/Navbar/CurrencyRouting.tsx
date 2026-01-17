@@ -1,7 +1,6 @@
 import { useMemo, useState, useCallback } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-
-export type Currency = "eur" | "usd";
+import type { Currency } from "../../types/product";
 
 const CURRENCY_LABEL: Record<Currency, string> = {
     eur: "EUR €",

@@ -1,38 +1,5 @@
 import { Link } from "react-router-dom";
-
-type DropdownLink = {
-    label: string;
-    to: string;
-};
-
-type DropdownColumn = {
-    title: string; 
-    titleTo?: string; 
-    links: DropdownLink[];
-};
-
-type DropdownImage = {
-    src: string;
-    alt: string;
-    to?: string; 
-};
-
-export type MainDropdownConfig = {
-    sideLabel: string; // "Men", "Women", "Junior"
-    columns: DropdownColumn[];
-    image?: DropdownImage;
-};
-
-type Props = {
-    open: boolean;
-    config: MainDropdownConfig;
-
-    onMouseEnter: () => void;
-    onMouseLeave: () => void;
-
-    linkClassName: string; 
-    className?: string; 
-};
+import type { MainDropdownProps } from "../../types/components";
 
 export function MainDropdown({
     open,
@@ -41,7 +8,7 @@ export function MainDropdown({
     onMouseLeave,
     linkClassName,
     className = "",
-    }: Props) {
+    }: MainDropdownProps) {
     if (!open) return null;
 
     const gridCols = config.image ? "grid-cols-4" : "grid-cols-3";

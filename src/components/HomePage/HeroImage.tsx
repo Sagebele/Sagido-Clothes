@@ -1,13 +1,8 @@
 
 import mainImage from "../../assets/images/HomePage/backgroundImage.jpg";
+import type { HeroImageProps } from "../../types/components";
 
-type Props = {
-  title: string;
-  subtitle: string;
-  image?: string;
-};
-
-export default function HeroImage({ title, subtitle, image }: Props) {
+export default function HeroImage({ title, subtitle, image }: HeroImageProps) {
   return (
     <section 
       className="min-h-screen w-full flex flex-col items-center justify-center relative bg-cover bg-center overflow-hidden"

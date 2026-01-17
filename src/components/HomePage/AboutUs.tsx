@@ -2,16 +2,7 @@ import "../../styles/AboutUs.css";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../../utils/currencyHelper";
 import { useScrollAnimation } from "../../Hooks/ScrollAnimation";
-
-interface TextImageSectionProps {
-    title: string;
-    subtitle: string;
-    text: string;
-    image: string;
-    imageAlt: string;
-    span?: string;
-    imagePosition?: "left" | "right";
-}
+import type { TextImageSectionProps } from "../../types/components";
 
 const TextImageSection = ({
     title,

@@ -3,8 +3,7 @@ import { useNavbar } from "../context/useNavbar";
 import Footer from "../components/Footer";
 import womenBackground from "../assets/images/women-clothing/background.jpg";
 import ClothingCards from "../components/clothingCards";
-import testImageFront from "../assets/images/women-clothing/testImageFront.jpg";
-import testImageBack from "../assets/images/women-clothing/testimageBack.jpg";
+
 
 const WomenPage = () => {
     const { setNavbar } = useNavbar();
@@ -51,21 +50,13 @@ const WomenPage = () => {
 
                 </div>
                 <div className="flex-1">
-                    <ClothingCards {...testCard} />
+                    <ClothingCards/>
                 </div>
             </div>
             
             <Footer />
         </>
     );
-};
-
-const testCard = {
-    id: "women1",
-    name: "Elegant Dress",
-    price: 89.99,
-    imageFront: testImageFront,
-    imageBack: testImageBack,
 };
 
 

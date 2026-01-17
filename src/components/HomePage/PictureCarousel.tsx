@@ -1,20 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import type { CarouselSlide } from "../../types/components";
 
-/* ===================== TYPES ===================== */
 
-type Slide = {
-  front: string;
-  back: string;
-  altFront: string;
-  altBack: string;
-};
-
-/* ===================== SLIDES ===================== */
-/* Images are inline URLs (no imports) */
-
-const slides: Slide[] = [
+const slides: CarouselSlide[] = [
   {
     front:
       "https://images.pexels.com/photos/34489595/pexels-photo-34489595.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -43,6 +33,8 @@ const slides: Slide[] = [
 
 
 const mod = (n: number, m: number) => ((n % m) + m) % m;
+
+
 
 
 function FlipCard({
@@ -82,7 +74,6 @@ export default function PictureCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  /* ---------- autoplay ---------- */
   useEffect(() => {
     if (isPaused || total <= 1) return;
 
@@ -121,7 +112,6 @@ export default function PictureCarousel() {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* ---------- PREV BUTTON ---------- */}
         <button
           type="button"
           onClick={goPrev}
@@ -137,12 +127,12 @@ export default function PictureCarousel() {
         <div className="lg:hidden flex justify-center">
           <FlipCard
             {...visible.current.slide}
-            className="w-full max-w-[520px] aspect-[4/5]"
+            className="w-full max-w-130 aspect-4/5"
           />
         </div>
 
         {/* ---------- DESKTOP ---------- */}
-        <div className="hidden lg:flex items-center justify-center h-[720px]">
+        <div className="hidden lg:flex items-center justify-center h-180">
           <div className="flex items-center justify-center gap-10  overflow-hidden">
             <div
               onClick={() => setCurrentIndex(visible.prev.index)}
@@ -150,14 +140,14 @@ export default function PictureCarousel() {
             >
               <FlipCard
                 {...visible.prev.slide}
-                className="w-[440px] h-[600px]"
+                className="w-110 h-150"
               />
             </div>
 
             <div className="z-20 hover:scale-105 transition-transform duration-500">
               <FlipCard
                 {...visible.current.slide}
-                className="w-[560px] h-[720px]"
+                className="w-140 h-180"
               />
             </div>
 
@@ -167,13 +157,12 @@ export default function PictureCarousel() {
             >
               <FlipCard
                 {...visible.next.slide}
-                className="w-[440px] h-[600px]"
+                className="w-140 h-180"
               />
             </div>
           </div>
         </div>
 
-        {/* ---------- NEXT BUTTON ---------- */}
         <button
           type="button"
           onClick={goNext}
@@ -186,7 +175,6 @@ export default function PictureCarousel() {
         </button>
       </div>
 
-      {/* ---------- DOTS ---------- */}
       <div className="flex justify-center mt-6 gap-2">
         {slides.map((_, i) => (
           <button

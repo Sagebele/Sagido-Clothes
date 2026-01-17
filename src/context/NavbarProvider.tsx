@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { type NavbarConfig, NavbarContext    } from "./NavbarContext";
+import { NavbarContext } from "./NavbarContext";
+import type { NavbarConfig } from "../types/navbar";
 
 const DEFAULT_NAVBAR: NavbarConfig = {
     variant: "solid",
