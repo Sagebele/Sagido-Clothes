@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet, useLocation, useParams, Navigate } from "react-router-dom";
 import Navbar from "../components/Nav/Navbar";
 import type { Currency } from "../types/product";
@@ -8,12 +8,24 @@ const VALID_CURRENCIES = ["eur", "usd"] as const;
 const RootLayout = () => {
     const { pathname } = useLocation();
     const { currency: currencyParam } = useParams<{ currency: string }>();
+    const previousPathRef = useRef<string>("");
     
     const isValidCurrency = VALID_CURRENCIES.includes(currencyParam as Currency);
     const currency: Currency = isValidCurrency ? (currencyParam as Currency) : "eur";
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        const getPathWithoutCurrency = (path: string) => {
+            return path.replace(/^\/(eur|usd)/, '');
+        };
+
+        const currentPathNoCurrency = getPathWithoutCurrency(pathname);
+        const previousPathNoCurrency = getPathWithoutCurrency(previousPathRef.current);
+
+        if (currentPathNoCurrency !== previousPathNoCurrency && previousPathRef.current !== "") {
+            window.scrollTo(0, 0);
+        }
+
+        previousPathRef.current = pathname;
     }, [pathname]);
 
     useEffect(() => {

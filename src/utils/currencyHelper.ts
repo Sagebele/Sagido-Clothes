@@ -12,7 +12,7 @@ export const useGetCurrencyPath = () => {
     };
 };
 
-const getCurrencyFromStorage = (): string => {
+export const getCurrencyFromStorage = (): string => {
     const saved = localStorage.getItem("currency");
     return saved === "usd" ? "usd" : "eur";
 };

@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { useCart } from "../context/useCart";
 import { AnimatedBall } from "./AnimatedBall";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
-import type { Product } from "../types";
+import type { Product, Currency } from "../types";
 import { getProducts } from "../api/products";
+import { getErrorMessage } from "../api/errors";
 
 export default function ClothingCards() {
+    const { currency: currencyParam } = useParams<{ currency?: string }>();
+    const currency: Currency = (currencyParam === "usd" ? "usd" : "eur") as Currency;
     const { addItem, cartIconRef, favoritesIconRef } = useCart();
     const [animatingBall, setAnimatingBall] = useState<{
         startX: number;
@@ -58,7 +61,7 @@ export default function ClothingCards() {
             const endY = favRect.top + favRect.height / 2;
 
             setAnimatingBall({ startX, startY, endX, endY });
-            // Here you would also add the item to favorites context/state
+            //TODO: Add to favorites logic here
         }
     };
 
@@ -66,23 +69,35 @@ export default function ClothingCards() {
         setAnimatingBall(null);
     };
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     // Mock product data for demonstration
-    const [products, setProducts] = useState<Product[]>([]);
+    const [baseProducts, setBaseProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // EUR to USD conversion rate
+    const EUR_TO_USD = 1.10;
+
+    // Convert prices based on selected currency
+    const products = useMemo(() => {
+        if (currency === "usd") {
+            return baseProducts.map(product => ({
+                ...product,
+                price: Number((product.price * EUR_TO_USD).toFixed(2))
+            }));
+        }
+        return baseProducts;
+    }, [baseProducts, currency]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
+                setError(null);
+                // Fetch with EUR as base currency
                 const data = await getProducts({ currency: "eur", category: "women" });
-                setProducts(data);
+                setBaseProducts(data);
             } catch (err) {
-                setError("Failed to load women products.");
+                setError(getErrorMessage(err));
             } finally {
                 setLoading(false);
             }
@@ -119,7 +134,7 @@ export default function ClothingCards() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {products.map((product) => (
                             <div key={product.id} className="rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                <div className="relative w-full h-90 overflow-hidden cursor-pointer group">
+                                <div className="relative w-full h-120 overflow-hidden cursor-pointer group">
                                     <img
                                         src={product.imageFront}
                                         alt="Clothing Item"
@@ -139,7 +154,7 @@ export default function ClothingCards() {
                                         onClick={handleAddtoFavorites}
                                     />
                                     <h3 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center text-lg bg-black/30 backdrop-blur-md font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {product.name} - ${product.price}
+                                        {product.name} - {currency === "usd" ? "$" : "€"}{product.price}
                                     </h3>
                                 </div>
                             </div>
