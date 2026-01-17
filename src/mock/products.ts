@@ -1,26 +1,59 @@
 import type { Product } from "../types/product";
-import mockimgBack from "../assets/images/women-clothing/testimageBack.jpg";
-import mockimgFront from "../assets/images/women-clothing/testImageFront.jpg";
 
 export const mockProducts: Product[] = [
     {
         id: "p_001",
         name: "Classic Hoodie",
         description: "Soft cotton hoodie",
-        imageFront: mockimgFront,
-        imageBack: mockimgBack,
+        imageFront: "https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg",
+        imageBack: "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
         price: 29.99,
         category: "women",
         quantity: 1,
+        type: "hoodie",
     },
     {
         id: "p_002",
         name: "Another Hoodie",
         description: "Soft cotton hoodie",
-        imageFront: mockimgFront,
-        imageBack: mockimgBack,
+        imageFront: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
+        imageBack: "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2",
         price: 33.99,
         category: "women",
         quantity: 1,
+        type: "hoodie",
     },
+    {
+        id: "p_003",
+        name: "Stylish Jacket",
+        description: "Warm and trendy jacket",
+        imageFront: "https://images.unsplash.com/photo-1509631179647-0177331693ae",
+        imageBack: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+        price: 59.99,
+        category: "women",
+        quantity: 1,
+        type: "jacket",
+    },
+    {
+        id: "p_004",
+        name: "Summer Dress",
+        description: "Light and breezy dress",
+        imageFront: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+        imageBack: "https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg",
+        price: 45.0,
+        category: "women",
+        quantity: 1,
+        type: "dress",
+    },
+    {
+        id: "p_005",
+        name: "Casual T-Shirt",
+        description: "Comfortable cotton t-shirt",
+        imageFront: "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
+        imageBack: "https://images.unsplash.com/photo-1485960994840-902a67e187c8",
+        price: 19.99,
+        category: "women",
+        quantity: 1,
+        type: "t-shirt",
+    }
 ];

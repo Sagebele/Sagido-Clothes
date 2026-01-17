@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/useCart";
 import { AnimatedBall } from "./AnimatedBall";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,9 +8,15 @@ import type { Product, Currency } from "../types";
 import { getProducts } from "../api/products";
 import { getErrorMessage } from "../api/errors";
 
-export default function ClothingCards() {
+interface ClothingCardsProps {
+    selectedCategories?: string[];
+    sortBy?: string;
+}
+
+export default function ClothingCards({ selectedCategories = [], sortBy = "newest" }: ClothingCardsProps) {
     const { currency: currencyParam } = useParams<{ currency?: string }>();
     const currency: Currency = (currencyParam === "usd" ? "usd" : "eur") as Currency;
+    const navigate = useNavigate();
     const { addItem, cartIconRef, favoritesIconRef } = useCart();
     const [animatingBall, setAnimatingBall] = useState<{
         startX: number;
@@ -18,6 +24,10 @@ export default function ClothingCards() {
         endX: number;
         endY: number;
     } | null>(null);
+
+    const handleProductClick = (productId: string) => {
+        navigate(`/${currency}/product/${productId}`);
+    };
 
     const handleAddCart = (e: React.MouseEvent<SVGSVGElement>, product: Product) => {
         e.preventDefault();
@@ -74,11 +84,9 @@ export default function ClothingCards() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // EUR to USD conversion rate
     const EUR_TO_USD = 1.10;
 
-    // Convert prices based on selected currency
-    const products = useMemo(() => {
+    const convertedProducts = useMemo(() => {
         if (currency === "usd") {
             return baseProducts.map(product => ({
                 ...product,
@@ -87,6 +95,34 @@ export default function ClothingCards() {
         }
         return baseProducts;
     }, [baseProducts, currency]);
+
+    // Filter and sort products
+    const products = useMemo(() => {
+        let filtered = [...convertedProducts];
+
+        if (selectedCategories.length > 0) {
+            filtered = filtered.filter(product => {
+                if (product.type) {
+                    return selectedCategories.includes(product.type);
+                }
+
+            });
+        }
+
+        switch (sortBy) {
+            case "priceLowHigh":
+                filtered.sort((a, b) => a.price - b.price);
+                break;
+            case "priceHighLow":
+                filtered.sort((a, b) => b.price - a.price);
+                break;
+            case "newest":
+            default:
+                break;
+        }
+
+        return filtered;
+    }, [convertedProducts, selectedCategories, sortBy]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -131,32 +167,33 @@ export default function ClothingCards() {
                 )}
                 
                 {!loading && !error && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                         {products.map((product) => (
-                            <div key={product.id} className="rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                <div className="relative w-full h-120 overflow-hidden cursor-pointer group">
-                                    <img
-                                        src={product.imageFront}
-                                        alt="Clothing Item"
-                                        className="w-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
-                                    />
-                                    <img 
-                                        src={product.imageBack} 
-                                        alt="Clothing Item Back" 
-                                        className="w-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
-                                    />
-                                    <FontAwesomeIcon icon={faShoppingBasket} 
-                                        className="absolute top-3 right-2 text-white bg-black/30 backdrop-blur-md rounded-full p-2 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
-                                        onClick={(e) => handleAddCart(e, product)}
-                                    />
-                                    <FontAwesomeIcon icon={faHeart} 
-                                        className="absolute top-3 left-2 text-white bg-black/30 backdrop-blur-md rounded-full p-2 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
-                                        onClick={handleAddtoFavorites}
-                                    />
-                                    <h3 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center text-lg bg-black/30 backdrop-blur-md font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {product.name} - {currency === "usd" ? "$" : "€"}{product.price}
-                                    </h3>
-                                </div>
+                            <div key={product.id} className="relative w-full aspect-3/4 cursor-pointer group rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+
+                                <img
+                                    src={product.imageFront}
+                                    alt="Clothing Item"
+                                    className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
+                                    onClick={() => handleProductClick(product.id)} 
+                                />
+                                <img 
+                                    src={product.imageBack} 
+                                    alt="Clothing Item Back" 
+                                    className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
+                                    onClick={() => handleProductClick(product.id)} 
+                                />
+                                <FontAwesomeIcon icon={faShoppingBasket} 
+                                    className="absolute top-3 right-2 text-white bg-black/30 backdrop-blur-md rounded-full p-2 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
+                                    onClick={(e) => handleAddCart(e, product)}
+                                />
+                                <FontAwesomeIcon icon={faHeart} 
+                                    className="absolute top-3 left-2 text-white bg-black/30 backdrop-blur-md rounded-full p-2 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
+                                    onClick={handleAddtoFavorites}
+                                />
+                                <h3 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center text-lg bg-black/30 backdrop-blur-md font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {product.name} - {currency === "usd" ? "$" : "€"}{product.price}
+                                </h3>
                             </div>
                         ))}     
                     </div>

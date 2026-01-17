@@ -12,4 +12,5 @@ export type Product = {
     imageFront?: string;
     imageBack?: string;
     quantity?: number;
+    type?: string;
 };
