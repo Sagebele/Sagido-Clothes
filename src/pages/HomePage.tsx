@@ -1,6 +1,5 @@
 import CategoryCard from "../components/HomePage/CategoryCards";
 import TextImageSection from "../components/HomePage/AboutUs";
-import aboutUsImg from "/images/HomePage/aboutUs.jpg";
 import FooterHome from "../components/Footer";
 import Information from "../components/HomePage/Information";
 import PictureCarousel from "../components/HomePage/PictureCarousel";
@@ -22,7 +21,7 @@ const HomePage = () => {
                 title="About Sagido"
                 subtitle="Feel Good. Look Good. Do Good."
                 text="At Sagido Clothing, we believe that fashion is more than just clothing; it's a form of self-expression and a way to embrace individuality. Our mission is to provide high-quality, stylish apparel that empowers our customers to feel confident and comfortable in their own skin. We are committed to sustainability and ethical practices, ensuring that our products not only look good but also contribute positively to the environment and society. Join us on our journey to redefine fashion with purpose and passion."
-                image={aboutUsImg}
+                image="/images/HomePage/aboutUs.jpg"
                 imageAlt="About Sagido"
                 span="Learn More"
                 imagePosition="right"

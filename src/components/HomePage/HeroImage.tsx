@@ -1,5 +1,4 @@
 
-import mainImage from "/images/HomePage/backgroundImage.jpg";
 import type { HeroImageProps } from "../../types/components";
 
 export default function HeroImage({ title, subtitle, image }: HeroImageProps) {
@@ -7,7 +6,7 @@ export default function HeroImage({ title, subtitle, image }: HeroImageProps) {
     <section 
       className="min-h-screen w-full flex flex-col items-center justify-center relative bg-cover bg-center overflow-hidden"
       style={{
-        backgroundImage: `url("${image || mainImage}")`,
+        backgroundImage: `url("${image || "/images/HomePage/backgroundImage.jpg"}")`,
         backgroundAttachment: 'fixed'
       }}
     >

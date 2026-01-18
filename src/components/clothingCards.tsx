@@ -171,14 +171,14 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
                             <div key={product.id} className="relative w-full aspect-3/4 cursor-pointer group rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
 
                                 <img
-                                    src={product.images?.imageFront || "/images/women-clothing/testImageFront.jpg"}
-                                    alt="Clothing Item"
+                                    src={product.images?.main?.[0] || "/images/women-clothing/testImageFront.jpg"}
+                                    alt={product.images?.alt || "Clothing Item"}
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 
                                 />
                                 <img 
-                                    src={product.images?.imageBack || "/images/women-clothing/testimageBack.jpg"} 
-                                    alt="Clothing Item Back" 
+                                    src={product.images?.main?.[1] || "/images/women-clothing/testimageBack.jpg"} 
+                                    alt={product.images?.alt ? `${product.images.alt} - Back` : "Clothing Item Back"} 
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 
                                 />

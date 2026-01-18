@@ -1,7 +1,6 @@
 
 import FooterHome from "../components/Footer";
 import HeroImage from "../components/HomePage/HeroImage";
-import shippingImg from "/images/shippingBackground.jpg";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { Link } from "react-router-dom";
@@ -61,7 +60,7 @@ export default function Shipping() {
             <HeroImage 
                 title="Shipping Information"
                 subtitle="Learn about our shipping policies, delivery times, and how we ensure your order arrives safely."
-                image={shippingImg}
+                image="/images/shippingBackground.jpg"
             />
             <section className="bg-black/10 backdrop-blur-lg border-t border-white/20 overflow-hidden">
                 <div className="relative z-10 w-full py-20 px-4">

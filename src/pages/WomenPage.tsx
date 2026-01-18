@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
-import womenBackground from "/images/womenBackground.jpg";
 import ClothingCards from "../components/clothingCards";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +32,7 @@ const WomenPage = () => {
             <div 
                 className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-centerpy-20"
                 style={{
-                    backgroundImage: `url("${womenBackground}")`,
+                    backgroundImage: `url("/images/womenBackground.jpg")`,
                     backgroundAttachment: 'fixed'
                 }}
             >
@@ -79,7 +78,6 @@ const WomenPage = () => {
                         value={sortBy}
                         onChange={(e) => {
                             setSortBy(e.target.value);
-                            // setIsMobileMenuOpen(false);
                         }}
                         id="sortingSelect"
                     >

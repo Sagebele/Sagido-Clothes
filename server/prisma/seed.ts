@@ -2,6 +2,8 @@ import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
+import * as fs from "fs";
+import * as path from "path";
 
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({ connectionString });
@@ -9,35 +11,17 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+    // Read products from JSON file
+    const productsPath = path.join(__dirname, "data", "products.json");
+    const productsData = fs.readFileSync(productsPath, "utf-8");
+    const products = JSON.parse(productsData);
+
     await prisma.product.createMany({
-        data: [
-        {
-            name: "Classic Hoodie",
-            description: "Soft cotton hoodie",
-            images: {
-                imageFront: "/images/hoodie-front.jpg",
-                imageBack: "/images/hoodie-back.jpg",
-            },
-            category: "women",
-            type: "hoodie",
-            price: 4999,
-            active: true,
-        },
-        {
-            name: "Everyday Tee",
-            description: "Comfy t-shirt",
-            images: {
-                imageFront: "/images/tee-front.jpg",
-                imageBack: "/images/tee-back.jpg",
-            },
-            category: "women",
-            type: "tee",
-            price: 1999,
-            active: true,
-        },
-        ],
+        data: products,
         skipDuplicates: true,
     });
+
+    console.log(`Successfully seeded ${products.length} products`);
 }
 
 main()

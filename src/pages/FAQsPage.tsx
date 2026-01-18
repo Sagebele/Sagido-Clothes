@@ -1,7 +1,6 @@
 
 import FooterHome from "../components/Footer";
 import HeroImage from "../components/HomePage/HeroImage";
-import faqImg from "/images/faqsBackground.jpg";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";
@@ -72,7 +71,7 @@ const FAQsPage = () => {
             <HeroImage 
                 title="FAQs"
                 subtitle="Find answers to common questions about our products, shipping, and policies."
-                image={faqImg}
+                image="/images/faqsBackground.jpg"
             />    
             <section className="bg-black/10 backdrop-blur-lg border-t border-white/20 overflow-hidden">
                 <div className="relative z-10 w-full py-20 px-4">

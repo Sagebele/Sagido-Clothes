@@ -16,8 +16,10 @@ export type ProductType =
     | "coat";
 
 export type ProductImages = {
-    imageFront?: string;
-    imageBack?: string;
+    main: string[];
+    gallery?: string[];
+    thumbnail: string;
+    alt: string;
 };
 
 export type Product = {

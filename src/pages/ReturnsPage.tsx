@@ -1,7 +1,6 @@
 
 import FooterHome from "../components/Footer";
 import HeroImage from "../components/HomePage/HeroImage";
-import returnsImg from "/images/returnsBackground.jpg";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";
@@ -61,7 +60,7 @@ export default function ReturnsPage() {
             <HeroImage 
                 title="Returns & Exchanges"
                 subtitle="Hassle-free returns and exchanges for your satisfaction."
-                image={returnsImg}
+                image="/images/returnsBackground.jpg"
             />
             <section className="bg-black/10 backdrop-blur-lg border-t border-white/20 overflow-hidden">
                 <div className="relative z-10 w-full py-20 px-4">

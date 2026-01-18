@@ -1,6 +1,3 @@
-import womanImg from "/images/HomePage/womanCardImage.jpg"
-import manImg from "/images/HomePage/manCardImage.jpg"
-import juniorImg from "/images/HomePage/juniorCardImage.jpg"
 import { useScrollAnimation } from "../../Hooks/ScrollAnimation"
 import { useNavigate } from "react-router-dom"
 import { getCurrencyPath } from "../../utils/currencyHelper"
@@ -66,17 +63,17 @@ const cards: CardItemProp[] = [
     {
         id: "womenCard",
         title: "Women",
-        imageUrl: womanImg,
+        imageUrl: "/images/HomePage/womanCardImage.jpg",
     },
     {
         id: "menCard",
         title: "Men",
-        imageUrl: manImg,
+        imageUrl: "/images/HomePage/manCardImage.jpg",
     },
     {
         id: "juniorCard",
         title: "Junior",
-        imageUrl: juniorImg,
+        imageUrl: "/images/HomePage/juniorCardImage.jpg",
     },
     ];
 

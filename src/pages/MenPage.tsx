@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
-import menBackground from "/images/menBackground.jpg";
 import ClothingCards from "../components/clothingCards";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +32,7 @@ const MenPage = () => {
             <div 
                 className="min-h-screen flex flex-col items-center justify-center relative bg-cover bg-centerpy-20"
                 style={{
-                    backgroundImage: `url("${menBackground}")`,
+                    backgroundImage: `url("/images/menBackground.jpg")`,
                     backgroundAttachment: 'fixed'
                 }}
             >
