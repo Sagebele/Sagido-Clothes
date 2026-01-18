@@ -1,0 +1,15 @@
+node_modules/
+
+# Environment variables - NEVER commit
+.env
+.env.*
+!.env.example
+
+# Prisma
+prisma/dev.db
+prisma/*.db
+prisma/*.db-journal
+/generated/prisma
+
+# Logs
+*.log

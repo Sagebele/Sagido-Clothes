@@ -7,10 +7,32 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node
+node_modules/
+dist/
+dist-ssr/
+build/
 *.local
+
+# Environment variables - NEVER commit
+.env
+.env.*
+!.env.example
+
+# Prisma
+server/prisma/dev.db
+server/prisma/*.db
+server/prisma/*.db-journal
+
+# Cloud credentials
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!eslint.config.js
+!vite.config.ts
+!tailwind.config.js
+!prisma.config.ts
 
 # Editor directories and files
 .vscode/*
@@ -22,16 +44,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-node_modules/
-dist/
-build/
-.env
-.env.local
-.env.production
-.env.development
-
-.DS_Store
-.idea
 .vscode

@@ -3,14 +3,21 @@
 
 export type Currency = "eur" | "usd";
 
+export type ProductImages = {
+  imageFront?: string;
+  imageBack?: string;
+};
+
 export type Product = {
-    id: string;
-    name: string;
-    description?: string;
-    price: number;       // price in the requested currency
-    category: "women" | "men" | "junior";
-    imageFront?: string;
-    imageBack?: string;
-    quantity?: number;
-    type?: string;
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  category: "women" | "men" | "junior";
+  images: ProductImages;
+  type: string;
+  active?: boolean;
+  quantity?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
