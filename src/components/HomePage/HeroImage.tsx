@@ -1,5 +1,5 @@
 
-import mainImage from "../../assets/images/HomePage/backgroundImage.jpg";
+import mainImage from "/images/HomePage/backgroundImage.jpg";
 import type { HeroImageProps } from "../../types/components";
 
 export default function HeroImage({ title, subtitle, image }: HeroImageProps) {

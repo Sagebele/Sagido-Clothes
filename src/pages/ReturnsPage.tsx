@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useNavbar } from "../context/useNavbar";
+
 import FooterHome from "../components/Footer";
+import HeroImage from "../components/HomePage/HeroImage";
+import returnsImg from "/images/returnsBackground.jpg";
 import { Link } from "react-router-dom";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";
@@ -53,58 +54,37 @@ const RETURN_ITEMS = [
 ];
 
 export default function ReturnsPage() {
-    const { setNavbar, resetNavbar } = useNavbar();
 
-    useEffect(() => {
-        setNavbar({ variant: "solid" });
-        window.scrollTo(0, 0);
-        return () => resetNavbar();
-    }, [setNavbar, resetNavbar]);
 
     return (
         <>
-            <section className="relative w-full h-[55dvh] flex items-start justify-start ">
-                <img 
-                    src="https://images.pexels.com/photos/8927654/pexels-photo-8927654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    alt="Returns Background"
-                    className=" w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40" />
-                <h2>
-                    <span className="absolute top-1/2 left-1/2 z-10 text-5xl md:text-6xl font-bold text-white drop-shadow-lg -translate-x-1/2 -translate-y-1/2">
-                        Returns & Exchanges
-                    </span>
-                </h2>
-            </section>
-            <section className="bg-black/10 backdrop-blur-lg border-t border-white/20">
+            <HeroImage 
+                title="Returns & Exchanges"
+                subtitle="Hassle-free returns and exchanges for your satisfaction."
+                image={returnsImg}
+            />
+            <section className="bg-black/10 backdrop-blur-lg border-t border-white/20 overflow-hidden">
                 <div className="relative z-10 w-full py-20 px-4">
                     <div className="max-w-3xl mx-auto">
-                        <div className="text-center mb-16">
-                            <p className="text-lg font-bold text-black-100 drop-shadow-md text-zinc-800">
-                                Hassle-free returns and exchanges for your satisfaction.
-                            </p>
-                        </div>
-
                         <div className="space-y-4">
                             {RETURN_ITEMS.map((item) => (
                                 <ReturnItem key={item.id} item={item} />
                             ))}
                         </div>
-
-                        <div className="mt-16 p-8 bg-white/20 backdrop-blur-sm rounded-lg text-center border border-white/20">
-                            <h2 className="text-2xl font-bold mb-3 text-zinc-900">
-                                Need Further Assistance?
-                            </h2>
-                            <p className="text-zinc-800 mb-4">
-                                Contact our support team for any questions about returns and exchanges.
-                            </p>
-                            <Link to={getCurrencyPath("/contactus")}
-                                className="inline-block text-white px-6 py-3 bg-zinc-800  rounded-md hover:bg-zinc-700 transition font-semibold"
-                            >
-                                Contact Support
-                            </Link>
-                        </div>
                     </div>
+                </div>
+                <div className="mt-16 p-8 bg-white/20 backdrop-blur-sm rounded-lg text-center border border-white/20">
+                    <h2 className="text-2xl font-bold mb-3 text-zinc-900">
+                        Need Further Assistance?
+                    </h2>
+                    <p className="text-zinc-800 mb-4">
+                        Contact our support team for any questions about returns and exchanges.
+                    </p>
+                    <Link to={getCurrencyPath("/contactus")}
+                        className="inline-block text-white px-6 py-3 bg-zinc-800 rounded-md hover:bg-zinc-700 transition font-semibold"
+                    >
+                        Contact Support
+                    </Link>
                 </div>
             </section>
             <FooterHome />

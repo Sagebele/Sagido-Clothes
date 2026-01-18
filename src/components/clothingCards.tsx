@@ -129,8 +129,7 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
             try {
                 setLoading(true);
                 setError(null);
-                // Fetch with EUR as base currency
-                const data = await getProducts({ currency: "eur", category: "women" });
+                const data = await getProducts({ category: "women" });
                 setBaseProducts(data);
             } catch (err) {
                 setError(getErrorMessage(err));
@@ -172,13 +171,13 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
                             <div key={product.id} className="relative w-full aspect-3/4 cursor-pointer group rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
 
                                 <img
-                                    src={product.imageFront}
+                                    src={product.images?.imageFront || "/images/women-clothing/testImageFront.jpg"}
                                     alt="Clothing Item"
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 
                                 />
                                 <img 
-                                    src={product.imageBack} 
+                                    src={product.images?.imageBack || "/images/women-clothing/testimageBack.jpg"} 
                                     alt="Clothing Item Back" 
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 

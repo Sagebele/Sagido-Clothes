@@ -1,19 +1,12 @@
-import { useEffect } from "react";
-import { useNavbar } from "../context/useNavbar";
+
 import HeroImage from "../components/HomePage/HeroImage";
-import mainImg from "../assets/images/AboutUsPage/Background.jpg";
+import mainImg from "/images/aboutusBackground.jpg";
 import TextImageSection from "../components/HomePage/AboutUs";
-import aboutUsImg from "../assets/images/HomePage/aboutUs.jpg";
+import aboutUsImg from "/images/HomePage/aboutUs.jpg";
 import FooterHome from "../components/Footer";
 
 const AboutUsPage = () => {
 
-    const { setNavbar } = useNavbar();
-
-    useEffect(() => {
-        setNavbar({ variant: "solid" });
-        window.scrollTo(0, 0);
-    }, [setNavbar]);    
 
     return (
         <div className="w-full bg-white">

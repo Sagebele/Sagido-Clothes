@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useNavbar } from "../context/useNavbar";
+
 import FooterHome from "../components/Footer";
+import HeroImage from "../components/HomePage/HeroImage";
+import shippingImg from "/images/shippingBackground.jpg";
 import { useScrollAnimation } from "../Hooks/ScrollAnimation";
 import { getCurrencyPath } from "../utils/currencyHelper";
 import { Link } from "react-router-dom";
@@ -53,38 +54,18 @@ const SHIPPING_ITEMS = [
 ];
 
 export default function Shipping() {
-    const { setNavbar, resetNavbar } = useNavbar();
 
-    useEffect(() => {
-        setNavbar({ variant: "solid" });
-        window.scrollTo(0, 0);
-        return () => resetNavbar();
-    }, [setNavbar, resetNavbar]);
 
     return (
         <>
-            <section className="relative w-full h-[55dvh] flex items-start justify-start ">
-                <img 
-                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Shipping Information Background"
-                    className=" w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40" />
-                <h2>
-                    <span className="absolute top-1/2 left-1/2 z-10 text-5xl md:text-6xl font-bold text-white drop-shadow-lg -translate-x-1/2 -translate-y-1/2">
-                        Shipping Information
-                    </span>
-                </h2>
-            </section>
-            <section className="bg-black/10 backdrop-blur-lg border-t border-white/20">
+            <HeroImage 
+                title="Shipping Information"
+                subtitle="Learn about our shipping policies, delivery times, and how we ensure your order arrives safely."
+                image={shippingImg}
+            />
+            <section className="bg-black/10 backdrop-blur-lg border-t border-white/20 overflow-hidden">
                 <div className="relative z-10 w-full py-20 px-4">
                     <div className="max-w-3xl mx-auto">
-                        <div className="text-center mb-16">
-                            <p className="text-lg font-bold text-black-100 drop-shadow-md text-zinc-800">
-                                Learn about our shipping policies, delivery times, and how we ensure your order arrives safely.
-                            </p>
-                        </div>
-
                         <div className="space-y-4">
                             {SHIPPING_ITEMS.map((item) => (
                                 <ShippingItem key={item.id} item={item} />
@@ -92,15 +73,15 @@ export default function Shipping() {
                         </div>
                     </div>
                 </div>
-                <div className="mt-16 p-8 bg-white/20 backdrop-blur-sm rounded-lg text-center border border-white/20   ">
+                <div className="mt-16 p-8 bg-white/20 backdrop-blur-sm rounded-lg text-center border border-white/20">
                     <h2 className="text-2xl font-bold mb-3 text-zinc-900">
                         Don't see your question?
                     </h2>
-                    <p className="text-zinc-800 mb-4 ">
+                    <p className="text-zinc-800 mb-4">
                         Contact our support team for further assistance.
                     </p>
                     <Link to={getCurrencyPath("/contactus")}
-                        className="inline-block text-white px-6 py-3 bg-zinc-800  rounded-md hover:bg-zinc-700 transition font-semibold"
+                        className="inline-block text-white px-6 py-3 bg-zinc-800 rounded-md hover:bg-zinc-700 transition font-semibold"
                     >
                         Contact Support
                     </Link>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
-import womenBackground from "../assets/images/women-clothing/background.jpg";
+import womenBackground from "/images/womenBackground.jpg";
 import ClothingCards from "../components/clothingCards";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";

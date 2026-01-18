@@ -39,7 +39,6 @@ app.get("/api/products", async (req, res) => {
             category: p.category,
             type: p.type,
             price: p.price / 100, // return as decimal for frontend
-            currency: "eur",      // Phase 2: single currency; later you can extend
             active: p.active,
             createdAt: p.createdAt,
             updatedAt: p.updatedAt,
@@ -62,7 +61,6 @@ app.get("/api/products/:id", async (req, res) => {
         category: p.category,
         type: p.type,
         price: p.price / 100,
-        currency: "eur",
         active: p.active,
         createdAt: p.createdAt,
         updatedAt: p.updatedAt,

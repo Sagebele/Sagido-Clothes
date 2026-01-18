@@ -1,21 +1,13 @@
-import { useEffect } from "react";
 import CategoryCard from "../components/HomePage/CategoryCards";
 import TextImageSection from "../components/HomePage/AboutUs";
-import aboutUsImg from "../assets/images/HomePage/aboutUs.jpg";
-import { useNavbar } from "../context/useNavbar";
+import aboutUsImg from "/images/HomePage/aboutUs.jpg";
 import FooterHome from "../components/Footer";
 import Information from "../components/HomePage/Information";
 import PictureCarousel from "../components/HomePage/PictureCarousel";
 import HeroImage from "../components/HomePage/HeroImage";
 
 const HomePage = () => {
-    const { setNavbar, resetNavbar } = useNavbar();
 
-    useEffect(() => {
-        setNavbar({ variant: "transparent" });
-        window.scrollTo(0, 0);
-        return () => resetNavbar();
-    }, [setNavbar, resetNavbar]);
 
     return (
     <div className="bg-white overflow-hidden">

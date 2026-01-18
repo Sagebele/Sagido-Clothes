@@ -3,21 +3,33 @@
 
 export type Currency = "eur" | "usd";
 
+export type ProductCategory = "women" | "men" | "junior";
+
+export type ProductType = 
+    | "hoodie" 
+    | "jacket" 
+    | "dress" 
+    | "tee" 
+    | "pants" 
+    | "shirt" 
+    | "sweater" 
+    | "coat";
+
 export type ProductImages = {
-  imageFront?: string;
-  imageBack?: string;
+    imageFront?: string;
+    imageBack?: string;
 };
 
 export type Product = {
-  id: string;
-  name: string;
-  description?: string;
-  price: number;
-  category: "women" | "men" | "junior";
-  images: ProductImages;
-  type: string;
-  active?: boolean;
-  quantity?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+    id: string;
+    name: string;
+    description?: string;
+    price: number;
+    category: ProductCategory;
+    images: ProductImages;
+    type: ProductType;
+    active?: boolean;
+    quantity?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 };
