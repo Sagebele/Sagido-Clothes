@@ -15,7 +15,9 @@ const JuniorPage = () => {
         { value: "hoodie", label: "Hoodies" },
         { value: "jacket", label: "Jackets" },
         { value: "dress", label: "Dresses" },
-        { value: "t-shirt", label: "T-Shirts" },
+        { value: "tee", label: "T-Shirts" },
+        { value: "shirt", label: "Shirts" },
+        { value: "sweater", label: "Sweaters" },
     ];
 
     const handleCategoryChange = (value: string) => {
@@ -135,6 +137,7 @@ const JuniorPage = () => {
                 </div>
                 <div className="flex-1 w-full px-4 lg:px-0">
                     <ClothingCards 
+                        category="junior"
                         selectedCategories={selectedCategories}
                         sortBy={sortBy}
                     />

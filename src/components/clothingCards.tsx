@@ -5,15 +5,16 @@ import { AnimatedBall } from "./AnimatedBall";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import type { Product, Currency } from "../types";
-import { getProducts } from "../api/products";
+import { getProductsByCategory } from "../api/products";
 import { getErrorMessage } from "../api/errors";
 
 interface ClothingCardsProps {
     selectedCategories?: string[];
     sortBy?: string;
+    category?: "women" | "men" | "junior";
 }
 
-export default function ClothingCards({ selectedCategories = [], sortBy = "newest" }: ClothingCardsProps) {
+export default function ClothingCards({ selectedCategories = [], sortBy = "newest", category }: ClothingCardsProps) {
     const { currency: currencyParam } = useParams<{ currency?: string }>();
     const currency: Currency = (currencyParam === "usd" ? "usd" : "eur") as Currency;
     const navigate = useNavigate();
@@ -25,8 +26,8 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
         endY: number;
     } | null>(null);
 
-    const handleProductClick = (productId: string) => {
-        navigate(`/${currency}/product/${productId}`);
+    const handleProductClick = (productName: string) => {
+        navigate(`/${currency}/product/${productName}`);
     };
 
     const handleAddCart = (e: React.MouseEvent<SVGSVGElement>, product: Product) => {
@@ -49,7 +50,7 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
                 id: product.id,
                 name: product.name,
                 price: product.price,
-                quantity: product.quantity || 1,
+                quantity: 1,
             });
         }
 
@@ -129,7 +130,7 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
             try {
                 setLoading(true);
                 setError(null);
-                const data = await getProducts({ category: "women" });
+                const data = await getProductsByCategory(category || "women");
                 setBaseProducts(data);
             } catch (err) {
                 setError(getErrorMessage(err));
@@ -139,7 +140,7 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
         };
 
         fetchProducts();
-    }, []);
+    }, [category]);
 
     return (
         <div>
@@ -171,13 +172,13 @@ export default function ClothingCards({ selectedCategories = [], sortBy = "newes
                             <div key={product.id} className="relative w-full aspect-3/4 cursor-pointer group rounded-md shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
 
                                 <img
-                                    src={product.images?.main?.[0] || "/images/women-clothing/testImageFront.jpg"}
+                                    src={product.images?.main?.[0] }
                                     alt={product.images?.alt || "Clothing Item"}
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-100 hover:opacity-0 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 
                                 />
                                 <img 
-                                    src={product.images?.main?.[1] || "/images/women-clothing/testimageBack.jpg"} 
+                                    src={product.images?.main?.[1] } 
                                     alt={product.images?.alt ? `${product.images.alt} - Back` : "Clothing Item Back"} 
                                     className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 hover:scale-105"
                                     onClick={() => handleProductClick(product.id)} 

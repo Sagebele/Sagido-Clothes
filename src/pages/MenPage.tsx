@@ -15,7 +15,9 @@ const MenPage = () => {
         { value: "hoodie", label: "Hoodies" },
         { value: "jacket", label: "Jackets" },
         { value: "shirt", label: "Shirts" },
-        { value: "pants", label: "Pants" },
+        { value: "tee", label: "T-Shirts" },
+        { value: "sweater", label: "Sweaters" },
+        { value: "coat", label: "Coats" },
     ];
 
     const handleCategoryChange = (value: string) => {
@@ -135,6 +137,7 @@ const MenPage = () => {
                 </div>
                 <div className="flex-1 w-full px-4 lg:px-0">
                     <ClothingCards 
+                        category="men"
                         selectedCategories={selectedCategories}
                         sortBy={sortBy}
                     />
