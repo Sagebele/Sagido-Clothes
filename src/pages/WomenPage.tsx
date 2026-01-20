@@ -1,24 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import ClothingCards from "../components/clothingCards";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-
+import { getCategories } from "../api/products";
 
 const WomenPage = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [sortBy, setSortBy] = useState<string>("newest");
+    const [categories, setCategories] = useState<{ value: string; label: string }[]>([]);
 
-    const categories = [
-        { value: "hoodie", label: "Hoodies" },
-        { value: "jacket", label: "Jackets" },
-        { value: "dress", label: "Dresses" },
-        { value: "tee", label: "T-Shirts" },
-        { value: "shirt", label: "Shirts" },
-        { value: "sweater", label: "Sweaters" },
-    ];
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const fetchedCategories = await getCategories();
+                const formattedCategories = fetchedCategories.map((cat) => ({
+                    value: cat,
+                    label: cat.charAt(0).toUpperCase() + cat.slice(1),
+                }));
+                setCategories(formattedCategories);
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+
+
+
 
     const handleCategoryChange = (value: string) => {
         setSelectedCategories(prev => 

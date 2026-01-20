@@ -55,3 +55,25 @@ export async function getProductsByCategory(category: Product["category"]): Prom
         throw error;
     }
 }
+
+export async function getCategories(): Promise<string[]> {
+    try {
+        const response = await api.get<string[]>("/categories");
+        return response.data;
+    } catch (error) {
+        console.error("Failed to fetch categories:", error);
+        throw error;
+    }
+}
+
+
+
+export async function getTypes(): Promise<string[]> {
+    try {
+        const response = await api.get<string[]>("/types");
+        return response.data;
+    } catch (error) {
+        console.error("Failed to fetch types:", error);
+        throw error;
+    }
+}

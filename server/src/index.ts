@@ -16,6 +16,21 @@ app.use(express.json());
 
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
+app.get("/api/categories", async (_req, res) => {
+    const categories = await prisma.product.findMany({
+        where: { active: true },
+        select: { category: true },
+        distinct: ["category"],
+    });
+
+    const uniqueCategories = categories
+        .map((p) => p.category)
+        .filter((cat, idx, arr) => arr.indexOf(cat) === idx)
+        .sort();
+
+    res.json(uniqueCategories);
+});
+
 app.get("/api/products", async (req, res) => {
     const category = req.query.category as string | undefined;
     const type = req.query.type as string | undefined;
